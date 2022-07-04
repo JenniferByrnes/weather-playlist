@@ -11,7 +11,7 @@ The user can choose a US state and see current abortion policy.
 * JQuery
 
 ## Website
-https://jenniferbyrnes.github.io/weather-playlist
+https://jenniferbyrnes.github.io/states-abortion-policy/
 
 ## Contribution
 Crafted with ❤️ by Jennifer Byrnes, Amanda Phillips, and Savannah W.
