@@ -1,8 +1,8 @@
-# Weather Playlist
-A class project to use open API calls to build a spotify playlist based on the current weather conditions.
+# State Abortion Policy
+A class project to use open API calls to display current abortion policy for a given US state.
 
 ## Purpose
-The user can let their music match the weather. 
+The user can choose a US state and see current abortion policy. 
 
 ## Built With
 * HTML
