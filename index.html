@@ -3,175 +3,95 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Abortion Policy</title>
+  <title>Weather Playlist</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
   
   <!-- Main Body-->
-  <section class="hero is-small has-background-info-light">
+  <section class="hero is-small is-link has-background-success-dark">
     <div class="hero-body">
       <div class="container has-text-centered"> 
-        <h1 class="title is-size-1">Abortion Policy by State</h1>
+        <p class="title">Weather Playlist</p>
         <p class="subtitle">
-          See how your State regulates women's healthcare.</p>
-          <p class="subtitle m-0"> 
-            <strong>Knowledge is Power</strong>! </p>
+          Find the right music to start your <strong>Great Day</strong>!
         </p>
       </div>
     </div>
   </section>
   <section class="section">
-    <!-- I had this, but it took up a lot of margin space on the sides
-    <div class="container"> 
-    -->
-    <div id="all-content-div">
+    <div class="container">
       <div class="columns is-vcentered">
-                <!-- Here are the Inspiration div(s) -->
+                <!-- Here is the Meme div(s) -->
         <!-- There are two (one hidden for differing screen sizes)-->
         <!-- Use specific classes instead of id's to change things-->
         <!-- If this too cumbersome, delete the 1st one and keep the second-->
-        <div class="column is-3 box is-hidden-touch inspiration-div">
-          <h2 class="is-size-3 title has-text-centered inspiration-title">Inspiration of the Day</h2>
-          <p class="has-text-centered inspiration-subtitle">An awesome inspiration to start your day</p>
-          <div class="container inspiration-container">
-            <img src="http://placeimg.com/640/360/any" class="inspiration-img">
+        <div class="column is-3 box is-hidden-touch meme-div">
+          <h2 class="is-size-3 title has-text-centered meme-title">Meme of the Day</h2>
+          <p class="has-text-centered meme-subtitle">An awesome meme to start your day</p>
+          <div class="container meme-container">
+            <img src="http://placeimg.com/640/360/any" class="meme-img">
           </div>
         </div>
         <div class="column is-9">
-          <!-- This is the state selector section -->
-          <!-- It may need to be a model box - still working that out
-          This solution takes a lot of space -->
-          <div class="box" id="state-input-box m-0">
-            <div class="columns">
-              <div class="column is-2">
-                <strong class="has-text-centered" id="state-input-title">Choose your State</strong>
-              </div>
-              <div class="column is-10">
-                  <container">
-                    <div class="buttons has-addons are-small">
-                      <button class="button m-0 has-background-danger-light">Alabama</button>
-                      <button class="button m-0 has-background-danger-light">Alaska</button>
-                      <button class="button m-0 has-background-danger-light">Arizona</button>
-                      <button class="button m-0 has-background-danger-light">Arkansas</button>
-                      <button class="button m-0 has-background-danger-light">California</button>
-                      <button class="button m-0 has-background-danger-light">Colorado</button>
-                      <button class="button m-0 has-background-danger-light">Connecticut</button>
-                      <button class="button m-0 has-background-danger-light">Delaware</button>
-                      <button class="button m-0 has-background-danger-light">Florida</button>
-                      <button class="button m-0 has-background-danger-light">Georgia</button>
-                      <button class="button m-0 has-background-danger-light">Hawaii</button>
-                      <button class="button m-0 has-background-danger-light">Idaho</button>
-                      <button class="button m-0 has-background-danger-light">Illinois</button>
-                      <button class="button m-0 has-background-danger-light">Indiana</button>
-                      <button class="button m-0 has-background-danger-light">Iowa</button>
-                      <button class="button m-0 has-background-danger-light">Kansas</button>
-                      <button class="button m-0 has-background-danger-light">Kentucky</button>
-                      <button class="button m-0 has-background-danger-light">Louisiana</button>
-                      <button class="button m-0 has-background-danger-light">Maine</button>
-                      <button class="button m-0 has-background-danger-light">Maryland</button>
-                      <button class="button m-0 
-                      has-background-danger-light">Massachusetts</button>
-                      <button class="button m-0
-                      has-background-danger-light">Michigan</button>
-                      <button class="button m-0
-                      has-background-danger-light">Minnesota</button>
-                      <button class="button m-0
-                      has-background-danger-light">Mississippi</button>                        
-                      <button class="button m-0
-                      has-background-danger-light">Missouri</button>
-                      <button class="button m-0
-                      has-background-danger-light">Montana</button>
-                      <button class="button m-0
-                      has-background-danger-light">Nebraska</button>
-                      <button class="button m-0 has-background-danger-light">Nevada</button>
-                      <button class="button m-0 has-background-danger-light">New Hampshire</button>
-                      <button class="button m-0 has-background-danger-light">New Jersey</button>
-                      <button class="button m-0 has-background-danger-light">New Mexico</button>
-                      <button class="button m-0 has-background-danger-light">New York</button>
-                      <button class="button m-0 has-background-danger-light">North Carolina</button>                        
-                      <button class="button m-0 has-background-danger-light">North Dakota</button>
-                      <button class="button m-0 has-background-danger-light">Ohio</button>
-                      <button class="button m-0 has-background-danger-light">Oklahoma</button>
-                      <button class="button m-0 has-background-danger-light">Oregon</button>
-                      <button class="button m-0 has-background-danger-light">Pennysylvania</button>
-                      <button class="button m-0 has-background-danger-light">Rhode Island</button>
-                      <button class="button m-0 has-background-danger-light">South Carolina</button>
-                      <button class="button m-0 has-background-danger-light">South Dakota</button>
-                      <button class="button m-0 has-background-danger-light">Tennessee</button>
-                      <button class="button m-0 has-background-danger-light">Texas</button>
-                      <button class="button m-0 has-background-danger-light">Utah</button>
-                      <button class="button m-0 has-background-danger-light">Vermont</button>
-                      <button class="button m-0 has-background-danger-light">Virginia</button>
-                      <button class="button m-0 has-background-danger-light">Washington</button>
-                      <button class="button m-0 has-background-danger-light">West Virginia</button>
-                      <button class="button m-0 has-background-danger-light">Wisconsin</button>
-                      <button class="button m-0 has-background-danger-light">Wyoming</button>
+          <!-- This is the weather section -->
+          <div class="box" id="weather-box">
+            <h2 class="is-size-3 title has-text-centered" id="weather-title">Your Weather (Today's Date)
+            </h2>
+              <div class="columns">
+                <form class="column is-2" id="weather-form">
+                  <div class="field">
+                    <label class="label">City</label>
+                    <div class="control">
+                      <input class="input" type="city-name" placeholder="Your City's Name">
                     </div>
-                  </container>
+                  </div>
+                  <button class="button is-success has-background-success-dark">Submit</button>
+                </form>
+                <div class="column is-10">
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam reiciendis libero, explicabo, nam praesentium illo saepe architecto magnam quidem esse accusamus officiis ab a nemo, reprehenderit sit nesciunt sint dolorem fugit minus? Dolorum, nihil. Ex, qui?</p>
                 </div>
               </div>
             </div>
-
-          <!-- This is the abortion-facts secion -->
-          <!-- This is the title and subtitle (if desired)-->
-          <div class="box has-text-centered" id="abortion-facts-div">
-            <h2 class="is-size-2 title" id="abortion-facts-title">Abortion Policy for <span>state-name</span></h2>
-            <p id="abortion-facts-subtitle has-text-centered">Here's a spot for a subtitle - if you want it......  Perhaps a statement about the database from which we got the info. </p>
-            <br>   
-            <!-- This is the space for information - I'm thinking we'll need 3 calls to get data from 3 different tables.  Up to you! 
-            I'll load the field up and you can rearrange or delete as desired.  If this turns out to be a lot, remember that you have teammates!!!  I did not do the insurance table - it gives me a headache.  You can certainly add it if you wish, but I think that we have plenty here!!! -->
-            <div class="columns" id="abortion-facts-columns">
-              <div class="box column m-0 has-background-danger-light m-1 ">
-                <div id="abortion-facts-1">
-                  <h4 class="title is-4">Gestational Limits</h4>
-                  <div class="has-text-left is-size-5">
-                    <p>banned_after_weeks_since_LMP: <span id="banned_after_weeks_since_LMP">#</span> hours</p>
-                    <p>exception_life: <span id="exception_life">bool</span> visits</p>
-                    <p>exception_health: <span id="exception_health">string</span></p>
-                    <p>exception_fetal: <span id="exception_fetal">string</span></p>
-                    <p>exception_rape_or_incest: <span id="exception_rape_or_incest">string</span></p>
-                  </div>
+          <!-- This is the spotify secion -->
+          <!-- This is the title and subtitle (if desired)
+          It might be a good spot for some variable to show what 
+        factors went into choosing the playlist.... -->
+          <div class="box" id="spotify-div">
+            <h2 class="is-size-3 title has-text-centered" id="spotify-title">Your Playlist</h2>
+            <p id="spotify-subtitle">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam reiciendis libero, explicabo, nam praesentium illo </p>
+            <br>
+            <!-- This is the space for playlists -->
+            <div class="columns" id="spotify-columns">
+              <div class="box column has-background-success-dark m-0">
+                <div id="spotify-1">
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam reiciendis libero, explicabo, nam praesentium illo </p>
                 </div>
               </div>
-              <div class="box column m-0 has-background-danger-light m-1 is-one-third">
-                <div id="abortion-facts-2">
-                  <h4 class="title is-4">Waiting Periods</h4>
-                  <div class="has-text-left is-size-5">
-                    <p>Waiting Period: <span id="'waiting-period-hours">#</span> hours</p>
-                    <p>Counseling Visit Reqd: <span id="counseling-visits">string</span> visits</p>
-                    <p>Exceptions: <span id="waiting-exception-health">string</span></p>
-                    <p>Notes: <span id="waiting-period-notes">string</span></p>
-                  </div>
+              <div class="box column has-background-success-dark m-0">
+                <div id="spotify-2">
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam reiciendis libero, explicabo, nam praesentium illo </p>
                 </div>
               </div>
-              <div class="box column m-0 has-background-danger-light m-1">
-                <div id="abortion-facts-3">
-                  <h4 class="title is-4">Minors</h4>
-                  <div class="has-text-left is-size-5">
-                    <p>below_age: <span id="'below_age">#</span> age below which restrictions apply</p>
-                    <p>parental_consent_required: <span id="parental_consent_required">bool</span></p>
-                    <p>parental_notification_required: <span id="parental_notification_required">bool</span></p>
-                    <p>parents_required: <span id="parents_required">#</span>of parents reqd to be notified</p>
-                    <p>judicial_bypass_available: <span id="judicial_bypass_available">bool</span></p>
-                    <p>allows_minor_to_consent: <span id="allows_minor_to_consent">bool</span></p>
-                  </div>
+              <div class="box has-background-success-dark column">
+                <div id="spotify-3">
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam reiciendis libero, explicabo, nam praesentium illo </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- Here are the inspiration div(s) -->
+        <!-- Here is the Meme div(s) -->
         <!-- There are two (one hidden for differing screen sizes)-->
         <!-- Use specific classes instead of id's to change things-->
         <!-- If this too cumbersome, delete the 1st one and keep the second
-             then, all of the classes with the word "inspiration" could be id's
+             then, all of the classes with the word "meme" could be id's
              it's the only way I could think of to keep this section on the left for most of the screen sizes.  -->
-        <div class="column is-3 box is-hidden-desktop inspiration-div">
-          <h2 class="is-size-3 title has-text-centered inspiration-title">inspiration of the Day</h2>
-          <p class="has-text-centered inspiration-subtitle">An awesome inspiration to start your day</p>
-          <div class="container inspiration-container">
-            <img src="http://placeimg.com/640/360/any" class="inspiration-img">
+        <div class="column is-3 box is-hidden-desktop meme-div">
+          <h2 class="is-size-3 title has-text-centered meme-title">Meme of the Day</h2>
+          <p class="has-text-centered meme-subtitle">An awesome meme to start your day</p>
+          <div class="container meme-container">
+            <img src="http://placeimg.com/640/360/any" class="meme-img">
           </div>
         </div>
       </div>
@@ -184,7 +104,7 @@
     <footer class="footer py-5 has-background-warning-light">
       <div class="content has-text-centered">
         <p>
-          <strong>Abortion Policy State</strong> by <a href="https://github.com/JenniferByrnes">Jennifer Byrnes </a> and
+          <strong>Your Weather Playlist</strong> by <a href="https://github.com/JenniferByrnes">Jennifer Byrnes </a> and
           <a href="http://opensource.org/licenses/mit-license.php">Amanda</a> and <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"> Savannah</a>.
         </p>
       </div>
