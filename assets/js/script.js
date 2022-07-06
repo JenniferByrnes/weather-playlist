@@ -6,6 +6,7 @@ var formalCityName;
 // Variable(s)) used to get playlist
 var weatherMain;
 var weatherDescription;
+var currentTemp;
 
 // Get the city info from local storage to display
 var cityObjArray = JSON.parse(localStorage.getItem("cityInfo")) || [];
@@ -136,25 +137,29 @@ var getWeather = function (latitude, longitude) {
             weatherDescription = data.current.weather[0].description;
             var iconUrl =
               "https://openweathermap.org/img/wn/" + iconCode + ".png";
-            $("#today-icon").html(
-              "<img class=icon-size src='" + iconUrl + "'>"
-            );
-
-            // Display the temp/wind/humidity
-            $("#today-temperature").text("Temp: " + data.current.temp + "F");
+              $("#today-icon").html(
+                "<img class=icon-size src='" + iconUrl + "'>"
+                );
+            
+                // Display the temp/wind/humidity
+                $("#today-temperature").text("Temp: " + data.current.temp + "F");
             $("#today-winds").text(
               "Winds: " + data.current.wind_speed + " MPH"
-            );
+              );
             $("#today-humidity").text(
               "Humidity: " + data.current.humidity + " %"
             );
-
+            
+            //Set global variable for  playlist
+            currentTemp = data.current.temp;
+            console.log("currentTempo=", currentTemp);
+            
             // Display the UV index number
             $("#today-uv-index").text("" + data.current.uvi);
-
+            
             // clear any old color class
             $("#today-uv-index").removeClass();
-
+            
             // get the correct background color
             if (data.current.uvi <= 2) {
               $("#today-uv-index").addClass("has-background-success");
@@ -171,21 +176,22 @@ var getWeather = function (latitude, longitude) {
             $("#weather-description").empty(weatherDescriptionButton);
             var weatherMainButton = $("<button class=button></button>").text(
               weatherMain
-            );
-            $("#weather-main").append(weatherMainButton); // Append new city button element
-            var weatherDescriptionButton = $(
-              "<button class=button></button>"
-            ).text(weatherDescription);
-            $("#weather-description").append(weatherDescriptionButton); // Append new city button element
-            //****************************************************************************** */
+              );
+              $("#weather-main").append(weatherMainButton); // Append new city button element
+              var weatherDescriptionButton = $(
+                "<button class=button></button>"
+                ).text(weatherDescription);
+                $("#weather-description").append(weatherDescriptionButton); // Append new city button element
+                //****************************************************************************** */
+                getPlaylist();
+              }
+            });
+          } else {
+            alert("Error: Total Bummer");
           }
-        });
-      } else {
-        alert("Error: Total Bummer");
-      }
-    })
-    .catch(function (error) {
-      alert("Unable to connect to OpenWeatherAPI");
+        })
+        .catch(function (error) {
+          alert("Unable to connect to OpenWeatherAPI");
     });
 };
 
@@ -206,23 +212,27 @@ var buttonClickHandler = function (event) {
 
 //*******************************************************/
 //             Spotify's code goes here                */
-
 var playlistOption;
-var globalTemp = 15;
+var globalTemp = currentTemp;
+console.log("currentTemp", currentTemp);
 
-if (globalTemp > 80){
-  playlistOption = "sunny"
-}else if(globalTemp < 80 && globalTemp > 40){
-  playlistOption = 'Rainy'
-} else {
-  playlistOption ="cold"
-}
-
-fetch("https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=" + playlistOption + "&type=playlist&perPage=3")
- .then(response => response.json())
-.then(result => console.log(result))
-.catch(error => console.log('error', error));
-
+getPlaylist = function () {
+  fetch(
+    "https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=" +
+      playlistOption +
+      "&type=playlist&perPage=3"
+  )
+    .then((response) => response.json())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
+  if (globalTemp > 80) {
+    playlistOption = "sunny";
+  } else if (globalTemp < 80 && globalTemp > 40) {
+    playlistOption = "Rainy";
+  } else {
+    playlistOption = "cold";
+  }
+};
 
 memeFunction();
 renderCitySelectors();
