@@ -68,16 +68,21 @@
                     </h2>
                     <div class="weather-info icon-size" id="today-icon"></div>
                   </div>  
-                  
-                  <ul class="city-today-group">
-                    <li class="weather-info" id="today-temperature">Temp: </li>
-                    <li class="weather-info" id="today-winds">Winds: </li>
-                    <li class="weather-info" id="today-humidity">Humidity: </li>
-                    <div class="weather-info level-left flex-row today-flex-group" id="today-uv-group">
-                      <p>UV Index:   </p>
-                      <p class="weather-info" id="today-uv-index"></p>
-                    </div>
-                  </ul>
+                    <div class="columns">
+                      <div class="column" id="weather-main">weather-main</div>
+                      <div class="column">
+                        <ul class="city-today-group">
+                          <li class="weather-info" id="today-temperature">Temp: </li>
+                          <li class="weather-info" id="today-winds">Winds: </li>
+                          <li class="weather-info" id="today-humidity">Humidity: </li>
+                          <div class="weather-info level-left flex-row today-flex-group" id="today-uv-group">
+                            <p>UV Index:   </p>
+                            <p class="weather-info" id="today-uv-index"></p>
+                          </div>
+                        </ul>
+                      </div>
+                      <div class="column" id="weather-description">weather-description</div>
+                  </div>
                 </div>
               </div>
             </div>

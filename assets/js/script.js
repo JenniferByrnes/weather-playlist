@@ -3,20 +3,24 @@ var citySearchEl = $('#weather-form');
 var cityNameEl = $('#city-name');
 var formalCityName;
 
-// Get the city info from local storage
+// Variable(s)) used to get playlist
+var weatherMain; 
+var weatherDescription;  
+
+// Get the city info from local storage to display
 var cityObjArray = JSON.parse(localStorage.getItem("cityInfo")) || [];
 console.log(cityObjArray);
 
 var cityButtonEl = document.querySelector('#city-buttons');
 
 //*******************************************************/
-//             Savannah's code goes here                */
-var savannahFunction = function(){
-  console.log("Savannah's Function call works");
+//             Meme/Inspiration code goes here                */
+var memeFunction = function(){
+  console.log("Meme Function call works");
 }
 
 //*******************************************************/
-//             Jennifer's code goes here                */
+//             Weather section code goes here                */
 var renderCitySelectors = function() {
   cityObjArray.forEach(function(placeHolder, arrayIndex) {
     // Create button for city choices
@@ -118,8 +122,10 @@ var getWeather = function(latitude, longitude) {
 
             $("#city-date").html(formalCityName + " (" + initialDate.toDateString() + ")");
 
-            // Get the icon
-            var iconCode = data.current.weather[0].icon + "@2x";          
+            // Get the icon and weather description
+            var iconCode = data.current.weather[0].icon + "@2x";  
+            weatherMain = data.current.weather[0].main;  
+            weatherDescription = data.current.weather[0].description;       
             var iconUrl = "https://openweathermap.org/img/wn/" + iconCode + ".png";   
             $("#today-icon").html("<img class=icon-size src='" + iconUrl  + "'>");
 
@@ -128,23 +134,31 @@ var getWeather = function(latitude, longitude) {
             $("#today-winds").text("Winds: " + data.current.wind_speed + " MPH");
             $("#today-humidity").text("Humidity: " + data.current.humidity + " %");
 
-            // Display the UV index with background color
+            // Display the UV index number
             $("#today-uv-index").text("" + data.current.uvi );
 
             // clear any old color class
             $("#today-uv-index").removeClass();
 
-            // get the correct color
+            // get the correct background color
             if (data.current.uvi <= 2) {
-              $("#today-uv-index").addClass("uv-low");
+              $("#today-uv-index").addClass("has-background-success");
             } else if (data.current.uvi <= 5) {
-              $("#today-uv-index").addClass("uv-moderate");
+              $("#today-uv-index").addClass("has-background-warning");
             } else if (data.current.uvi <= 7) {
-              $("#today-uv-index").addClass("uv-high");
+              $("#today-uv-index").addClass("has-background-warning-dark");
             } else {
-              $("#today-uv-index").addClass("uv-extreme");
+              $("#today-uv-index").addClass("has-background-danger-dark");
             };
-
+            //****************************************************************************** */
+            // Get weather description for playlist (for development only - remove!!!!!!!!!!!!)
+            $("#weather-main").empty(weatherMainButton);  
+            $("#weather-description").empty(weatherDescriptionButton);  
+            var weatherMainButton = $("<button class=button></button>").text(weatherMain)
+            $("#weather-main").append(weatherMainButton);   // Append new city button element
+            var weatherDescriptionButton = $("<button class=button></button>").text(weatherDescription)
+            $("#weather-description").append(weatherDescriptionButton);   // Append new city button element
+            //****************************************************************************** */
           }
         });
       } else {
@@ -169,12 +183,16 @@ var buttonClickHandler = function(event){
 }
 
 //*******************************************************/
-//             Amanda's code goes here                */
-var amandaFunction = function(){
-  console.log("Amanda's Function call works");
+//             Playlist code goes here                */
+var playlistFunction = function(){
+  console.log("Playlist Function call works");
+  // Variables used to get playlist - let me know if you need a different format!!!
+  // Choose the one that you wnat - both are displayed onscreen for your convenience
+// var weatherMain; 
+// var weatherDescription;
 }
 
-savannahFunction();
+memeFunction();
 renderCitySelectors();
 citySearchEl.on('submit', citySearchHandler);
 cityButtonEl.addEventListener("click", buttonClickHandler)
