@@ -4,19 +4,19 @@ var cityNameEl = $('#city-name');
 var formalCityName;
 
 // Variable(s)) used to get playlist
-var weatherMain; 
-var weatherDescription;  
+var weatherMain;
+var weatherDescription;
 
 // Get the city info from local storage to display
 var cityObjArray = JSON.parse(localStorage.getItem("cityInfo")) || [];
 
-var cityButtonEl = document.querySelector('#city-buttons');
+var cityButtonEl = document.querySelector("#city-buttons");
 
 //*******************************************************/
 //             Meme/Inspiration code goes here                */
-var memeFunction = function(){
+var memeFunction = function () {
   console.log("Meme Function call works");
-}
+};
 
 //*******************************************************/
 //             Weather section code goes here                */
@@ -37,7 +37,7 @@ var appendCity = function(cityName){
   $("#city-buttons").prepend(cityButton);   // Append new city button element
 }
 
-var citySearchHandler = function(event) {
+var citySearchHandler = function (event) {
   event.preventDefault();
 
   // get cityName from input element
@@ -47,94 +47,107 @@ var citySearchHandler = function(event) {
   if (cityName) {
     getCityLatLong(cityName);
     // clear input field content
-    cityNameEl.val('');
+    cityNameEl.val("");
   } else {
-    alert('Please enter a city name');
+    alert("Please enter a city name");
     return;
   }
 };
 
-var getCityLatLong = function(cityName) {
-
+var getCityLatLong = function (cityName) {
   // format the openwathermap api url
-  var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&appid=d89a7998c295640400d389063c3b71e9';
+  var apiUrl =
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
+    cityName +
+    "&appid=d89a7998c295640400d389063c3b71e9";
 
   // make a get request to url
   fetch(apiUrl)
-    .then(function(response) {
+    .then(function (response) {
       // request was successful
       if (response.ok) {
-        
-        response.json().then(function(cityData) {
+        response.json().then(function (cityData) {
           console.log("*******************************  data= ", cityData);
           if (!cityData[0]) {
             // no data returned for cityName
-            console.log("no data returned - invalid city????")
+            console.log("no data returned - invalid city????");
           } else {
             // Prepare object to push into array and make new selector button
-            formalCityName = cityData[0].name
+            formalCityName = cityData[0].name;
             const cityObj = {
               cityName: formalCityName,
               stateName: cityData[0].state,
               latitude: cityData[0].lat,
-              longitude: cityData[0].lon
-              }
+              longitude: cityData[0].lon,
+            };
             cityObjArray.push(cityObj);
             localStorage.setItem("cityInfo", JSON.stringify(cityObjArray));
-            
+
             // Add city button to search button list and get the weather
             appendCity(cityObj.cityName);
             getWeather(cityObj.latitude, cityObj.longitude);
           }
         });
       } else {
-        alert('Error: Total Bummer');
+        alert("Error: Total Bummer");
       }
     })
-    .catch(function(error) {
-      alert('Unable to connect to OpenWeatherAPI');
+    .catch(function (error) {
+      alert("Unable to connect to OpenWeatherAPI");
     });
 };
 
-var getWeather = function(latitude, longitude) {
+var getWeather = function (latitude, longitude) {
   // format the openwathermap api url
 
-  var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&exclude=minutely,hourly&units=imperial&appid=d89a7998c295640400d389063c3b71e9';
+  var apiUrl =
+    "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+    latitude +
+    "&lon=" +
+    longitude +
+    "&exclude=minutely,hourly&units=imperial&appid=d89a7998c295640400d389063c3b71e9";
 
   // make a get request to url
   fetch(apiUrl)
-    .then(function(response) {
+    .then(function (response) {
       // request was successful
       if (response.ok) {
-        
-        response.json().then(function(data) {
+        response.json().then(function (data) {
           console.log("*******************************  data= ", data);
           if (!data.daily[0]) {
             // no data returned
-            console.log("no data returned - invalid lat/lon????")
-          } 
-          else {
-            console.log("Loading weather data")
+            console.log("no data returned - invalid lat/lon????");
+          } else {
+            console.log("Loading weather data");
 
             // Load window for today's data
             const initialDate = new Date();
 
-            $("#city-date").html(formalCityName + " (" + initialDate.toDateString() + ")");
+            $("#city-date").html(
+              formalCityName + " (" + initialDate.toDateString() + ")"
+            );
 
             // Get the icon and weather description
-            var iconCode = data.current.weather[0].icon + "@2x";  
-            weatherMain = data.current.weather[0].main;  
-            weatherDescription = data.current.weather[0].description;       
-            var iconUrl = "https://openweathermap.org/img/wn/" + iconCode + ".png";   
-            $("#today-icon").html("<img class=icon-size src='" + iconUrl  + "'>");
+            var iconCode = data.current.weather[0].icon + "@2x";
+            weatherMain = data.current.weather[0].main;
+            weatherDescription = data.current.weather[0].description;
+            var iconUrl =
+              "https://openweathermap.org/img/wn/" + iconCode + ".png";
+            $("#today-icon").html(
+              "<img class=icon-size src='" + iconUrl + "'>"
+            );
 
             // Display the temp/wind/humidity
             $("#today-temperature").text("Temp: " + data.current.temp + "F");
-            $("#today-winds").text("Winds: " + data.current.wind_speed + " MPH");
-            $("#today-humidity").text("Humidity: " + data.current.humidity + " %");
+            $("#today-winds").text(
+              "Winds: " + data.current.wind_speed + " MPH"
+            );
+            $("#today-humidity").text(
+              "Humidity: " + data.current.humidity + " %"
+            );
 
             // Display the UV index number
-            $("#today-uv-index").text("" + data.current.uvi );
+            $("#today-uv-index").text("" + data.current.uvi);
 
             // clear any old color class
             $("#today-uv-index").removeClass();
@@ -148,48 +161,68 @@ var getWeather = function(latitude, longitude) {
               $("#today-uv-index").addClass("has-background-warning-dark");
             } else {
               $("#today-uv-index").addClass("has-background-danger-dark");
-            };
+            }
             //****************************************************************************** */
             // Get weather description for playlist (for development only - remove!!!!!!!!!!!!)
-            $("#weather-main").empty(weatherMainButton);  
-            $("#weather-description").empty(weatherDescriptionButton);  
-            var weatherMainButton = $("<button class=button></button>").text(weatherMain)
-            $("#weather-main").append(weatherMainButton);   // Append new city button element
-            var weatherDescriptionButton = $("<button class=button></button>").text(weatherDescription)
-            $("#weather-description").append(weatherDescriptionButton);   // Append new city button element
+            $("#weather-main").empty(weatherMainButton);
+            $("#weather-description").empty(weatherDescriptionButton);
+            var weatherMainButton = $("<button class=button></button>").text(
+              weatherMain
+            );
+            $("#weather-main").append(weatherMainButton); // Append new city button element
+            var weatherDescriptionButton = $(
+              "<button class=button></button>"
+            ).text(weatherDescription);
+            $("#weather-description").append(weatherDescriptionButton); // Append new city button element
             //****************************************************************************** */
           }
         });
       } else {
-        alert('Error: Total Bummer');
+        alert("Error: Total Bummer");
       }
     })
-    .catch(function(error) {
-      alert('Unable to connect to OpenWeatherAPI');
+    .catch(function (error) {
+      alert("Unable to connect to OpenWeatherAPI");
     });
-}
+};
 
-var buttonClickHandler = function(event){
+var buttonClickHandler = function (event) {
   event.preventDefault();
   formalCityName = event.target.innerHTML;
 
-  cityObjArray.forEach(function(placeHolder, arrayIndex) {
+  cityObjArray.forEach(function (placeHolder, arrayIndex) {
     // find the city to get the lat/long
     if (cityObjArray[arrayIndex].cityName === formalCityName) {
-      getWeather(cityObjArray[arrayIndex].latitude, cityObjArray[arrayIndex].longitude);
-    };
+      getWeather(
+        cityObjArray[arrayIndex].latitude,
+        cityObjArray[arrayIndex].longitude
+      );
+    }
   });
-}
+};
 
 //*******************************************************/
-//             Playlist code goes here                */
-var playlistFunction = function(){
-  console.log("Playlist Function call works");
-  // Variables used to get playlist - let me know if you need a different format!!!
-  // Choose the one that you wnat - both are displayed onscreen for your convenience
-// var weatherMain; 
-// var weatherDescription;
-}
+//             Spotify's code goes here                */
+//var myHeaders = new Headers();
+//myHeaders.append("Content-Type", "application/json");
+//var requestOptions = {
+//  method: "get",
+//  headers: myHeaders,
+//  redirect: "follow",
+
+//};
+
+//fetch("https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=sunny&type=playlist&perPage=3", requestOptions)
+//  .then(response => response.text())
+// .then(result => console.log(result))
+// .catch(error => console.log('error', error));
+
+var getPlaylists = function () {
+  fetch("https://api.spotify.com/v1");
+  console.log(response);
+};
+
+//getPlaylists();
 
 memeFunction();
 renderCitySelectors();
