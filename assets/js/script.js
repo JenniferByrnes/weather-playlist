@@ -14,8 +14,19 @@ var jenniferFunction = function(){
 
 //*******************************************************/
 //             Amanda's code goes here                */
-var amandaFunction = function(){
-  console.log("Amanda's Function call works");
-}
+//var myHeaders = new Headers();
+//myHeaders.append("Content-Type", "application/json");
+//var requestOptions = {
+  //  method: "get",
+  //  headers: myHeaders,
+  //  redirect: "follow",
+    
+//};
+
+//fetch("https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=sunny&type=playlist&perPage=3", requestOptions)
+  //  .then(response => response.text())
+   // .then(result => console.log(result))
+   // .catch(error => console.log('error', error));
+
 
 savannahFunction();
