@@ -1,8 +1,8 @@
-# State Abortion Policy
-A class project to use open API calls to display current abortion policy for a given US state.
+# Weather Playlist
+A class project to use open API calls to display current weather and playlist to go with it
 
 ## Purpose
-The user can choose a US state and see current abortion policy. 
+The user can choose a city and get the weather and a fun playlist! 
 
 ## Built With
 * HTML
@@ -11,7 +11,7 @@ The user can choose a US state and see current abortion policy.
 * JQuery
 
 ## Website
-https://jenniferbyrnes.github.io/states-abortion-policy/
+https://jenniferbyrnes.github.io/weather-playlist/
 
 ## Contribution
 Crafted with ❤️ by Jennifer Byrnes, Amanda Phillips, and Savannah W.
