@@ -203,26 +203,23 @@ var buttonClickHandler = function (event) {
 
 //*******************************************************/
 //             Spotify's code goes here                */
-//var myHeaders = new Headers();
-//myHeaders.append("Content-Type", "application/json");
-//var requestOptions = {
-//  method: "get",
-//  headers: myHeaders,
-//  redirect: "follow",
 
-//};
+var playlistOption;
+var globalTemp = 15;
 
-//fetch("https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=sunny&type=playlist&perPage=3", requestOptions)
-//  .then(response => response.text())
-// .then(result => console.log(result))
-// .catch(error => console.log('error', error));
+if (globalTemp > 80){
+  playlistOption = "sunny"
+}else if(globalTemp < 80 && globalTemp > 40){
+  playlistOption = 'Rainy'
+} else {
+  playlistOption ="cold"
+}
 
-var getPlaylists = function () {
-  fetch("https://api.spotify.com/v1");
-  console.log(response);
-};
+fetch("https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=" + playlistOption + "&type=playlist&perPage=3")
+ .then(response => response.json())
+.then(result => console.log(result))
+.catch(error => console.log('error', error));
 
-//getPlaylists();
 
 memeFunction();
 renderCitySelectors();
