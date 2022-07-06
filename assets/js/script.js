@@ -1,5 +1,5 @@
 //  This is where all global variable should be declared.
-var citySearchEl = $('#weather-form');
+var citySearchEl = $('#city-search-form');
 var cityNameEl = $('#city-name');
 var formalCityName;
 
@@ -9,7 +9,6 @@ var weatherDescription;
 
 // Get the city info from local storage to display
 var cityObjArray = JSON.parse(localStorage.getItem("cityInfo")) || [];
-console.log(cityObjArray);
 
 var cityButtonEl = document.querySelector('#city-buttons');
 
@@ -22,22 +21,24 @@ var memeFunction = function(){
 //*******************************************************/
 //             Weather section code goes here                */
 var renderCitySelectors = function() {
-  cityObjArray.forEach(function(placeHolder, arrayIndex) {
+  var length = cityObjArray.length;
+  console.log("***************************************cityObjArray=" , cityObjArray);
+  //cityObjArray.forEach(function(placeHolder, arrayIndex) {
+    for (let arrayIndex=(length-3); arrayIndex<length; arrayIndex++){
     // Create button for city choices
     appendCity(cityObjArray[arrayIndex].cityName);
-  })
+  }
 }
 
 var appendCity = function(cityName){
-  // Problem here - only the first class is kept, the rest are ignored
-  // May need to append classes
-  var cityButton = $("<button class=button is-success has-background-success-dark></button>").text(cityName)
-  $("#city-buttons").append(cityButton);   // Append new city button element
+
+  // Create new city button and add it to the list
+  var cityButton = $("<button class=button></button>").text(cityName).addClass("has-background-success-light is-responsive is-fullwidth mb-1");
+  $("#city-buttons").prepend(cityButton);   // Append new city button element
 }
 
 var citySearchHandler = function(event) {
   event.preventDefault();
-  console.log("incitySearchHandler")
 
   // get cityName from input element
   var cityName = $("input:text").val();
@@ -83,7 +84,6 @@ var getCityLatLong = function(cityName) {
             
             // Add city button to search button list and get the weather
             appendCity(cityObj.cityName);
-            console.log("time to getWeather")
             getWeather(cityObj.latitude, cityObj.longitude);
           }
         });
@@ -98,7 +98,6 @@ var getCityLatLong = function(cityName) {
 
 var getWeather = function(latitude, longitude) {
   // format the openwathermap api url
-  //var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&units=imperial&appid=d89a7998c295640400d389063c3b71e9';
 
   var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&exclude=minutely,hourly&units=imperial&appid=d89a7998c295640400d389063c3b71e9';
 
@@ -195,4 +194,5 @@ var playlistFunction = function(){
 memeFunction();
 renderCitySelectors();
 citySearchEl.on('submit', citySearchHandler);
+//$("#city-submit").on('submit', citySearchHandler);
 cityButtonEl.addEventListener("click", buttonClickHandler)
