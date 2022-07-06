@@ -3,8 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Weather Playlist</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link href="http://openweathermap.org/img/wn/10d@2x.png" />
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <title>Weather Playlist</title>
+  
 </head>
 <body>
   
@@ -34,22 +40,49 @@
           </div>
         </div>
         <div class="column is-9">
-          <!-- This is the weather section -->
+          <!-- Weather section -->
           <div class="box" id="weather-box">
-            <h2 class="is-size-3 title has-text-centered" id="weather-title">Your Weather (Today's Date)
-            </h2>
-              <div class="columns">
-                <form class="column is-2" id="weather-form">
+            <div class="columns">
+              <!-- Input city name form -->
+              <div class="column is-2">
+                <form id="weather-form">
                   <div class="field">
                     <label class="label">City</label>
                     <div class="control">
-                      <input class="input" type="city-name" placeholder="Your City's Name">
+                      <input class="input" type="text" placeholder="City Name" id="city-name">
                     </div>
                   </div>
-                  <button class="button is-success has-background-success-dark">Submit</button>
+                  <button id="city-submit" class="button is-success has-background-success-dark">Submit</button>
                 </form>
+                <!-- Saved city buttons -->
+                <div id="city-selection-group">
+                  <container id="city-buttons" class="card-body">
+                  </container>
+                </div>
+              </div>
+                <!-- Display weather section -->
                 <div class="column is-10">
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam reiciendis libero, explicabo, nam praesentium illo saepe architecto magnam quidem esse accusamus officiis ab a nemo, reprehenderit sit nesciunt sint dolorem fugit minus? Dolorum, nihil. Ex, qui?</p>
+                  <div class="level-item">
+                    <h2 class="is-size-3 title has-text-centered" id="city-date"> 
+                      <span id="city-date">City and Date</span>
+                    </h2>
+                    <div class="weather-info icon-size" id="today-icon"></div>
+                  </div>  
+                    <div class="columns">
+                      <div class="column" id="weather-main">weather-main</div>
+                      <div class="column">
+                        <ul class="city-today-group">
+                          <li class="weather-info" id="today-temperature">Temp: </li>
+                          <li class="weather-info" id="today-winds">Winds: </li>
+                          <li class="weather-info" id="today-humidity">Humidity: </li>
+                          <div class="weather-info level-left flex-row today-flex-group" id="today-uv-group">
+                            <p>UV Index:   </p>
+                            <p class="weather-info" id="today-uv-index"></p>
+                          </div>
+                        </ul>
+                      </div>
+                      <div class="column" id="weather-description">weather-description</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -111,5 +144,8 @@
     </footer>
 
   </section>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
 </html>
