@@ -6,6 +6,7 @@ var formalCityName;
 // Variable(s)) used to get playlist
 var weatherMain;
 var weatherDescription;
+var currentTemp;
 
 // Get the city info from local storage to display
 var cityObjArray = JSON.parse(localStorage.getItem("cityInfo")) || [];
@@ -175,6 +176,8 @@ var getWeather = function (latitude, longitude) {
             ).text(weatherDescription);
             $("#weather-description").append(weatherDescriptionButton); // Append new city button element
             //****************************************************************************** */
+            currentTemp = data.current.temp;
+            getPlaylist();
           }
         });
       } else {
@@ -203,26 +206,27 @@ var buttonClickHandler = function (event) {
 
 //*******************************************************/
 //             Spotify's code goes here                */
-//var myHeaders = new Headers();
-//myHeaders.append("Content-Type", "application/json");
-//var requestOptions = {
-//  method: "get",
-//  headers: myHeaders,
-//  redirect: "follow",
 
-//};
-
-//fetch("https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=sunny&type=playlist&perPage=3", requestOptions)
-//  .then(response => response.text())
-// .then(result => console.log(result))
-// .catch(error => console.log('error', error));
-
-var getPlaylists = function () {
-  fetch("https://api.spotify.com/v1");
-  console.log(response);
+var getPlaylist = function () {
+  var playlistOption;
+  var globalTemp = currentTemp;
+  console.log("currentTemp", currentTemp);
+  if (globalTemp > 80) {
+    playlistOption = "sunny";
+  } else if (globalTemp < 80 && globalTemp > 40) {
+    playlistOption = "Rainy";
+  } else {
+    playlistOption = "cold";
+  }
+  fetch(
+    "https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=" +
+    playlistOption +
+    "&type=playlist&perPage=3"
+    )
+    .then((response) => response.json())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
 };
-
-//getPlaylists();
 
 memeFunction();
 renderCitySelectors();
