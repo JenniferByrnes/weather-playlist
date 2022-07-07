@@ -149,7 +149,7 @@ var getWeather = function (latitude, longitude) {
             
             //Set global variable for  playlist
             currentTemp = data.current.temp;
-            console.log("currentTempo=", currentTemp);
+            console.log("currentTemp1=", currentTemp);
             
             // Display the UV index number
             $("#today-uv-index").text("" + data.current.uvi);
@@ -209,19 +209,11 @@ var buttonClickHandler = function (event) {
 
 //*******************************************************/
 //             Spotify's code goes here                */
-var playlistOption;
-var globalTemp = currentTemp;
-console.log("currentTemp", currentTemp);
 
 getPlaylist = function () {
-  fetch(
-    "https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=" +
-      playlistOption +
-      "&type=playlist&perPage=3"
-  )
-    .then((response) => response.json())
-    .then((result) => console.log(result))
-    .catch((error) => console.log("error", error));
+  var playlistOption;
+  var globalTemp = currentTemp;
+  console.log("currentTemp", currentTemp);
   if (globalTemp > 80) {
     playlistOption = "sunny";
   } else if (globalTemp < 80 && globalTemp > 40) {
@@ -229,6 +221,14 @@ getPlaylist = function () {
   } else {
     playlistOption = "cold";
   }
+  fetch(
+    "https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=" +
+    playlistOption +
+    "&type=playlist&perPage=3"
+    )
+    .then((response) => response.json())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
 };
 
 memeFunction();
