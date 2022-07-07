@@ -1,6 +1,6 @@
 //  This is where all global variable should be declared.
-var citySearchEl = $('#city-search-form');
-var cityNameEl = $('#city-name');
+var citySearchEl = $("#city-search-form");
+var cityNameEl = $("#city-name");
 var formalCityName;
 
 // Variable(s)) used to get playlist
@@ -9,8 +9,7 @@ var weatherDescription;
 var currentTemp;
 
 // Get the city info from local storage to display
-var cityObjArray = JSON.parse(localStorage.getItem("cityInfo")) || [];
-
+var cityObjArray = JSON.parse(localStorage.getItem("cityInfo") || "[]");
 var cityButtonEl = document.querySelector("#city-buttons");
 
 //*******************************************************/
@@ -21,22 +20,26 @@ var memeFunction = function () {
 
 //*******************************************************/
 //             Weather section code goes here                */
-var renderCitySelectors = function() {
+var renderCitySelectors = function () {
   var length = cityObjArray.length;
-  console.log("***************************************cityObjArray=" , cityObjArray);
+  console.log(
+    "***************************************cityObjArray=",
+    cityObjArray
+  );
   //cityObjArray.forEach(function(placeHolder, arrayIndex) {
-    for (let arrayIndex=(length-3); arrayIndex<length; arrayIndex++){
+  for (let arrayIndex = length - 3; arrayIndex < length; arrayIndex++) {
     // Create button for city choices
-    appendCity(cityObjArray[arrayIndex].cityName);
+    appendCity(cityObjArray[arrayIndex]?.cityName);
   }
-}
+};
 
-var appendCity = function(cityName){
-
+var appendCity = function (cityName) {
   // Create new city button and add it to the list
-  var cityButton = $("<button class=button></button>").text(cityName).addClass("has-background-success-light is-responsive is-fullwidth mb-1");
-  $("#city-buttons").prepend(cityButton);   // Append new city button element
-}
+  var cityButton = $("<button class=button></button>")
+    .text(cityName)
+    .addClass("has-background-success-light is-responsive is-fullwidth mb-1");
+  $("#city-buttons").prepend(cityButton); // Append new city button element
+};
 
 var citySearchHandler = function (event) {
   event.preventDefault();
@@ -216,16 +219,16 @@ getPlaylist = function () {
   console.log("currentTemp", currentTemp);
   if (globalTemp > 80) {
     playlistOption = "sunny";
-  } else if (globalTemp < 80 && globalTemp > 40) {
-    playlistOption = "Rainy";
+  } else if (globalTemp < 80 && globalTemp > 50) {
+    playlistOption = "warm";
   } else {
     playlistOption = "cold";
   }
   fetch(
     "https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=" +
-    playlistOption +
-    "&type=playlist&perPage=3"
-    )
+      playlistOption +
+      "&type=playlist&perPage=3"
+  )
     .then((response) => response.json())
     .then((result) => console.log(result))
     .catch((error) => console.log("error", error));
@@ -233,6 +236,6 @@ getPlaylist = function () {
 
 memeFunction();
 renderCitySelectors();
-citySearchEl.on('submit', citySearchHandler);
+citySearchEl.on("submit", citySearchHandler);
 //$("#city-submit").on('submit', citySearchHandler);
-cityButtonEl.addEventListener("click", buttonClickHandler)
+cityButtonEl.addEventListener("click", buttonClickHandler);
