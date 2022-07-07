@@ -234,6 +234,9 @@ getPlaylist = function () {
     .catch((error) => console.log("error", error));
 };
 
+// Display the playlist name, image and link
+
+
 memeFunction();
 renderCitySelectors();
 citySearchEl.on("submit", citySearchHandler);
