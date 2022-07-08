@@ -39,7 +39,7 @@ function renderImages (data){
   imageEl.append (image)
   memeContainer.append (imageEl)
 }
-memeFunction ()
+//memeFunction ()
 //*******************************************************/
 //             Weather section code goes here                */
 var renderCitySelectors = function () {
@@ -157,14 +157,15 @@ var getWeather = function (latitude, longitude) {
             );
 
             // Get the icon and weather description
-            var iconCode = data.current.weather[0].icon + "@2x";
+            var iconCode = data.current.weather[0].icon;
             weatherMain = data.current.weather[0].main;
             weatherDescription = data.current.weather[0].description;
             var iconUrl =
-              "https://openweathermap.org/img/wn/" + iconCode + ".png";
+              "https://openweathermap.org/img/w/" + iconCode + ".png";
             $("#today-icon").html(
-              "<img class=icon-size src='" + iconUrl + "'>"
-            );
+              "<img src='" + iconUrl + "'>" );
+
+            //document.getElementById('icon').src="http://openweathermap.org/img/w/"+d.weather[0].icon+".png";
 
             // Display the temp/wind/humidity
             $("#today-temperature").text("Temp: " + data.current.temp + "F");
@@ -191,25 +192,22 @@ var getWeather = function (latitude, longitude) {
             } else {
               $("#today-uv-index").addClass("has-background-danger-dark");
             }
-            //****************************************************************************** */
-            // Get weather description for playlist (for development only - remove!!!!!!!!!!!!)
-            $("#weather-main").empty(weatherMainButton);
-            $("#weather-description").empty(weatherDescriptionButton);
-            var weatherMainButton = $("<button class=button></button>").text(
-              weatherMain
-            );
-            $("#weather-main").append(weatherMainButton); // Append new city button element
-            var weatherDescriptionButton = $(
-              "<button class=button></button>"
-            ).text(weatherDescription);
-            $("#weather-description").append(weatherDescriptionButton); // Append new city button element
-            //****************************************************************************** */
+           
+            // empty out fields form previous city 
+            $("#weather-main").empty();
+            $("#weather-right-now").empty();
+
+            // Display current weather verbiage and icon
+            const weatherRightNow = $("<div>Weather now: </div>");
+            $("#weather-right-now").append(weatherRightNow); 
+            var weatherMainButton = $("<div class=is-italic>" + weatherDescription+ "</div>");
+            $("#weather-main").append(weatherMainButton); // Append new city
+            
             currentTemp = data.current.temp;
             getPlaylist();
           }
         });
       } else {
-        alert("Error: Total Bummer");
         errorMessage = ("Invalid response from the OpenWeatherAPI. Please try again later.");
         $("#js-modal-trigger").trigger("click");
       }
@@ -310,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-memeFunction();
+//memeFunction();
 renderCitySelectors();
 citySearchEl.on("submit", citySearchHandler);
 //$("#city-submit").on('submit', citySearchHandler);
