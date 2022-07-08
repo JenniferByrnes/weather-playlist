@@ -1,4 +1,5 @@
 //  This is where all global variable should be declared.
+var errorMessage = "Error message not set.";
 var citySearchEl = $("#city-search-form");
 var cityNameEl = $("#city-name");
 var formalCityName;
@@ -74,7 +75,8 @@ var citySearchHandler = function (event) {
     // clear input field content
     cityNameEl.val("");
   } else {
-    alert("Please enter a city name");
+      errorMessage = ("Please enter a city name");
+      $("#js-modal-trigger").trigger("click");
     return;
   }
 };
@@ -114,11 +116,13 @@ var getCityLatLong = function (cityName) {
           }
         });
       } else {
-        alert("Error: Total Bummer");
+        errorMessage = ("The OpenWeather API did not respond. Please try again");
+        $("#js-modal-trigger").trigger("click");
       }
     })
     .catch(function (error) {
-      alert("Unable to connect to OpenWeatherAPI");
+      errorMessage = ("Unable to connect to OpenWeatherAPI.  Please try again later.");
+      $("#js-modal-trigger").trigger("click");
     });
 };
 
@@ -206,10 +210,13 @@ var getWeather = function (latitude, longitude) {
         });
       } else {
         alert("Error: Total Bummer");
+        errorMessage = ("Invalid response from the OpenWeatherAPI. Please try again later.");
+        $("#js-modal-trigger").trigger("click");
       }
     })
     .catch(function (error) {
-      alert("Unable to connect to OpenWeatherAPI");
+      errorMessage = ("Unable to connect to OpenWeatherAPI. Please try again later.");
+      $("#js-modal-trigger").trigger("click");
     });
 };
 
@@ -251,6 +258,57 @@ var getPlaylist = function () {
     .then((result) => console.log(result))
     .catch((error) => console.log("error", error));
 };
+
+// Error handling
+// This code creates a modal box surrounded by an opaque background.
+// The user can look at the message and then click anywhere, hit escape, or 
+// an "x" at the top right to close the modal box.
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Functions to open and close a modal
+  function openModal($el) {
+    $el.classList.add('is-active');
+    $("#modal-error-message").text(errorMessage);
+  }
+
+  function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
+
+  function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+  }
+
+  // Add a click event on buttons to open a specific modal
+  (document.querySelectorAll('#js-modal-trigger') || []).forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+
+    $trigger.addEventListener('click', () => {
+      openModal($target);
+    });
+  });
+
+  // Add a click event on various child elements to close the parent modal
+  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+    const $target = $close.closest('.modal');
+
+    $close.addEventListener('click', () => {
+      closeModal($target);
+    });
+  });
+
+  // Add a keyboard event to close all modals
+  document.addEventListener('keydown', (event) => {
+    const e = event || window.event;
+
+    if (e.keyCode === 27) { // Escape key
+      closeAllModals();
+    }
+  });
+});
 
 memeFunction();
 renderCitySelectors();

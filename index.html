@@ -34,6 +34,12 @@
         <!-- Use specific classes instead of id's to change things-->
         <!-- If this too cumbersome, delete the 1st one and keep the second-->
         <div class="column is-3 box is-hidden-touch meme-div">
+
+          <!---- Hidden Button for error handling -------->
+          <button class="js-modal-trigger is-hidden" id="js-modal-trigger" data-target="modal-error-handling">
+            Modal button used in JS code
+          </button>
+          
           <h2 class="is-size-3 title has-text-centered meme-title">Meme of the Day</h2>
           <p class="has-text-centered meme-subtitle">An awesome meme to start your day</p>
           <div class="container meme-container">
@@ -80,6 +86,7 @@
                     </ul>
                   </div>
                   <div class="column" id="weather-description">weather-description
+
                   </div>
                 </div>
               </div>
@@ -143,6 +150,21 @@
     </footer>
 
   </section>
+
+  <!-- Modal Error Handling -->
+  <!-- This will only display when there is an error being shown -->
+  <div id="modal-error-handling" class="modal">
+    <div class="modal-background"></div>
+  
+    <div class="modal-content">
+      <div class="box">
+        <p id="modal-error-message">This gets replaced using JS</p>
+      </div>
+    </div>
+  
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="./assets/js/script.js"></script>
