@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/style.css" />
   <title>Weather Playlist</title>
+  <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
   
 </head>
 <body>
@@ -66,13 +67,26 @@
               <!-- Display weather section -->
               <div class="column is-9">
                 <div class="level-item">
-                  <h2 class="is-size-3 title has-text-centered" id="city-date"> 
+                  <h2 class="is-size-3 title has-text-centered pb-4" id="city-date"> 
                     <span id="city-date">City and Date</span>
                   </h2>
-                  <div class="weather-info icon-size" id="today-icon"></div>
+                  <div class="weather-info icon-size" id="today-icons"></div>
                 </div>  
-                <div class="columns">
-                  <div class="column" id="weather-main">weather-main
+                <div class="columns is-vcentered">
+                  <div class="column weather-info container">
+                    <div class="is-flex is-flex-direction-column">
+                      <div  class="is-flex is-justify-content-center is-flex-direction-column has-text-centered" id="weather-right-now">
+                        <!-- Description of weather is placed here using script.js -->
+                      </div>
+                      <div class="is-flex is-justify-content-center">
+                        <span class="icon is-large"  id="today-icon">
+                          <!-- Icon is placed here using script.js -->
+                        </span>
+                      </div>
+                      <div  class="is-flex is-justify-content-center is-flex-direction-column has-text-centered" id="weather-main">
+                        <!-- Description of weather is placed here using script.js -->
+                      </div>
+                    </div>
                   </div>
                   <div class="column">
                     <ul class="city-today-group">
@@ -84,9 +98,6 @@
                         <p class="weather-info" id="today-uv-index"></p>
                       </div>
                     </ul>
-                  </div>
-                  <div class="column" id="weather-description">weather-description
-
                   </div>
                 </div>
               </div>

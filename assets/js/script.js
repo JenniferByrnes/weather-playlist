@@ -39,7 +39,7 @@ function renderImages (data){
   imageEl.append (image)
   memeContainer.append (imageEl)
 }
-memeFunction ()
+//memeFunction ()
 //*******************************************************/
 //             Weather section code goes here                */
 var renderCitySelectors = function () {
@@ -49,10 +49,11 @@ var renderCitySelectors = function () {
     cityObjArray
   );
   //cityObjArray.forEach(function(placeHolder, arrayIndex) {
-  for (let arrayIndex = length - 3; arrayIndex < length; arrayIndex++) {
+  for (let arrayIndex = 0; arrayIndex < length; arrayIndex++) {
     // Create button for city choices
-    appendCity(cityObjArray[arrayIndex]?.cityName);
+    appendCity(cityObjArray[arrayIndex].cityName);
   }
+
 };
 
 var appendCity = function (cityName) {
@@ -60,8 +61,26 @@ var appendCity = function (cityName) {
   var cityButton = $("<button class=button></button>")
     .text(cityName)
     .addClass("has-background-success-light is-responsive is-fullwidth mb-1");
-  $("#city-buttons").prepend(cityButton); // Append new city button element
+    // Prepend new city button element (it appears on top)
+  $("#city-buttons").prepend(cityButton);
 };
+
+var setLocalStorage = function(cityObjArray){
+  //***********************jkb */
+  // Reset local storage with the most recent 3 cities
+  // Clear local storage to refresh it
+  console.log("clearing localStorage");
+  localStorage.removeItem("cityInfo");
+  
+  //Remove the oldest array object if needed
+  const lengthArray = cityObjArray.length;
+
+  if (lengthArray > 3) {
+    cityObjArray.shift();
+    console.log("cityObjArray.shift();= ",cityObjArray );
+  }
+  localStorage.setItem("cityInfo", JSON.stringify(cityObjArray));
+}
 
 var citySearchHandler = function (event) {
   event.preventDefault();
@@ -94,7 +113,7 @@ var getCityLatLong = function (cityName) {
       // request was successful
       if (response.ok) {
         response.json().then(function (cityData) {
-          console.log("*******************************  data= ", cityData);
+          console.log("*******************************  cityData= ", cityData);
           if (!cityData[0]) {
             // no data returned for cityName
             console.log("no data returned - invalid city????");
@@ -107,8 +126,16 @@ var getCityLatLong = function (cityName) {
               latitude: cityData[0].lat,
               longitude: cityData[0].lon,
             };
+
+            // Reset local storage
             cityObjArray.push(cityObj);
-            localStorage.setItem("cityInfo", JSON.stringify(cityObjArray));
+            const lengthArray = cityObjArray.length;
+            setLocalStorage(cityObjArray);
+
+            // Remove extra buttons
+            if (lengthArray > 2) {
+              $("#city-buttons").children().last().remove();
+            }
 
             // Add city button to search button list and get the weather
             appendCity(cityObj.cityName);
@@ -152,19 +179,19 @@ var getWeather = function (latitude, longitude) {
             // Load window for today's data
             const initialDate = new Date();
 
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             $("#city-date").html(
-              formalCityName + " (" + initialDate.toDateString() + ")"
+              formalCityName + " (" + initialDate.toLocaleDateString(undefined,options) + ")"
             );
 
             // Get the icon and weather description
-            var iconCode = data.current.weather[0].icon + "@2x";
+            var iconCode = data.current.weather[0].icon;
             weatherMain = data.current.weather[0].main;
             weatherDescription = data.current.weather[0].description;
             var iconUrl =
-              "https://openweathermap.org/img/wn/" + iconCode + ".png";
+              "https://openweathermap.org/img/w/" + iconCode + ".png";
             $("#today-icon").html(
-              "<img class=icon-size src='" + iconUrl + "'>"
-            );
+              "<img src='" + iconUrl + "'>" );
 
             // Display the temp/wind/humidity
             $("#today-temperature").text("Temp: " + data.current.temp + "F");
@@ -191,25 +218,22 @@ var getWeather = function (latitude, longitude) {
             } else {
               $("#today-uv-index").addClass("has-background-danger-dark");
             }
-            //****************************************************************************** */
-            // Get weather description for playlist (for development only - remove!!!!!!!!!!!!)
-            $("#weather-main").empty(weatherMainButton);
-            $("#weather-description").empty(weatherDescriptionButton);
-            var weatherMainButton = $("<button class=button></button>").text(
-              weatherMain
-            );
-            $("#weather-main").append(weatherMainButton); // Append new city button element
-            var weatherDescriptionButton = $(
-              "<button class=button></button>"
-            ).text(weatherDescription);
-            $("#weather-description").append(weatherDescriptionButton); // Append new city button element
-            //****************************************************************************** */
+           
+            // empty out fields form previous city 
+            $("#weather-main").empty();
+            $("#weather-right-now").empty();
+
+            // Display current weather verbiage and icon
+            const weatherRightNow = $("<div>Weather now: </div>");
+            $("#weather-right-now").append(weatherRightNow); 
+            var weatherMainButton = $("<div class=is-italic>" + weatherDescription+ "</div>");
+            $("#weather-main").append(weatherMainButton); // Append new city
+            
             currentTemp = data.current.temp;
             getPlaylist();
           }
         });
       } else {
-        alert("Error: Total Bummer");
         errorMessage = ("Invalid response from the OpenWeatherAPI. Please try again later.");
         $("#js-modal-trigger").trigger("click");
       }
@@ -310,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-memeFunction();
+//memeFunction();
 renderCitySelectors();
 citySearchEl.on("submit", citySearchHandler);
 //$("#city-submit").on('submit', citySearchHandler);
