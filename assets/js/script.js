@@ -2,6 +2,7 @@
 var citySearchEl = $("#city-search-form");
 var cityNameEl = $("#city-name");
 var formalCityName;
+var formalPlaylist;
 
 // Variable(s)) used to get playlist
 var weatherMain;
@@ -231,10 +232,11 @@ getPlaylist = function () {
   )
     .then((response) => response.json())
     .then((result) => console.log(result))
-    .catch((error) => console.log("error", error));
+    .catch((error) => console.log("error", error))
 };
 
-// Display the playlist name, image and link
+
+
 
 
 memeFunction();
