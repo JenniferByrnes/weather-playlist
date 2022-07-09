@@ -179,8 +179,9 @@ var getWeather = function (latitude, longitude) {
             // Load window for today's data
             const initialDate = new Date();
 
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             $("#city-date").html(
-              formalCityName + " (" + initialDate.toDateString() + ")"
+              formalCityName + " (" + initialDate.toLocaleDateString(undefined,options) + ")"
             );
 
             // Get the icon and weather description
