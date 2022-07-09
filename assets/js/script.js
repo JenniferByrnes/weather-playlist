@@ -3,6 +3,7 @@ var errorMessage = "Error message not set.";
 var citySearchEl = $("#city-search-form");
 var cityNameEl = $("#city-name");
 var formalCityName;
+var stateName = "";
 
 // Variable(s)) used to get playlist
 var weatherMain;
@@ -53,7 +54,6 @@ var renderCitySelectors = function () {
     // Create button for city choices
     appendCity(cityObjArray[arrayIndex].cityName);
   }
-
 };
 
 var appendCity = function (cityName) {
@@ -69,15 +69,12 @@ var setLocalStorage = function(cityObjArray){
   //***********************jkb */
   // Reset local storage with the most recent 3 cities
   // Clear local storage to refresh it
-  console.log("clearing localStorage");
   localStorage.removeItem("cityInfo");
   
   //Remove the oldest array object if needed
   const lengthArray = cityObjArray.length;
-
   if (lengthArray > 3) {
     cityObjArray.shift();
-    console.log("cityObjArray.shift();= ",cityObjArray );
   }
   localStorage.setItem("cityInfo", JSON.stringify(cityObjArray));
 }
@@ -126,6 +123,7 @@ var getCityLatLong = function (cityName) {
               latitude: cityData[0].lat,
               longitude: cityData[0].lon,
             };
+            stateName = cityObj.stateName;
 
             // Reset local storage
             cityObjArray.push(cityObj);
@@ -172,7 +170,8 @@ var getWeather = function (latitude, longitude) {
           console.log("*******************************  data= ", data);
           if (!data.daily[0]) {
             // no data returned
-            console.log("no data returned - invalid lat/lon????");
+            errorMessage = ("The OpenWeather API did not respond. Please try again");
+            $("#js-modal-trigger").trigger("click");
           } else {
             console.log("Loading weather data");
 
@@ -180,8 +179,11 @@ var getWeather = function (latitude, longitude) {
             const initialDate = new Date();
 
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            $("#city-date").html(
-              formalCityName + " (" + initialDate.toLocaleDateString(undefined,options) + ")"
+            $("#city-display").html(
+              formalCityName + ", " + stateName
+            );
+            $("#date-display").html(
+              " (" + initialDate.toLocaleDateString(undefined,options) + ")"
             );
 
             // Get the icon and weather description
@@ -193,14 +195,22 @@ var getWeather = function (latitude, longitude) {
             $("#today-icon").html(
               "<img src='" + iconUrl + "'>" );
 
+            // empty out fields from previous city 
+            $("#weather-main").empty();
+            $("#weather-right-now").empty();
+
+            // Display current weather verbiage and icon
+            const weatherRightNow = $("<div>Weather now: </div>");
+            $("#weather-right-now").append(weatherRightNow); 
+            var weatherDescDisplay = $("<div class=is-italic>" + weatherDescription + "</div>");
+            $("#weather-main").append(weatherDescDisplay);
+
             // Display the temp/wind/humidity
             $("#today-temperature").text("Temp: " + data.current.temp + "F");
             $("#today-winds").text(
-              "Winds: " + data.current.wind_speed + " MPH"
-            );
+              "Winds: " + data.current.wind_speed + " MPH");
             $("#today-humidity").text(
-              "Humidity: " + data.current.humidity + " %"
-            );
+              "Humidity: " + data.current.humidity + " %");
 
             // Display the UV index number
             $("#today-uv-index").text("" + data.current.uvi);
@@ -218,17 +228,8 @@ var getWeather = function (latitude, longitude) {
             } else {
               $("#today-uv-index").addClass("has-background-danger-dark");
             }
-           
-            // empty out fields form previous city 
-            $("#weather-main").empty();
-            $("#weather-right-now").empty();
-
-            // Display current weather verbiage and icon
-            const weatherRightNow = $("<div>Weather now: </div>");
-            $("#weather-right-now").append(weatherRightNow); 
-            var weatherMainButton = $("<div class=is-italic>" + weatherDescription+ "</div>");
-            $("#weather-main").append(weatherMainButton); // Append new city
             
+            // Call function to get Spotify playlist
             currentTemp = data.current.temp;
             getPlaylist();
           }
@@ -244,6 +245,8 @@ var getWeather = function (latitude, longitude) {
     });
 };
 
+// When a city is selected from a button, retrieve the 
+// lat/long and state/country data for that city.
 var buttonClickHandler = function (event) {
   event.preventDefault();
   formalCityName = event.target.innerHTML;
@@ -255,6 +258,7 @@ var buttonClickHandler = function (event) {
         cityObjArray[arrayIndex].latitude,
         cityObjArray[arrayIndex].longitude
       );
+      stateName = cityObjArray[arrayIndex].stateName;
     }
   });
 };
