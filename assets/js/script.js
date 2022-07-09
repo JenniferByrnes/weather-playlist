@@ -49,10 +49,11 @@ var renderCitySelectors = function () {
     cityObjArray
   );
   //cityObjArray.forEach(function(placeHolder, arrayIndex) {
-  for (let arrayIndex = length - 3; arrayIndex < length; arrayIndex++) {
+  for (let arrayIndex = 0; arrayIndex < length; arrayIndex++) {
     // Create button for city choices
-    appendCity(cityObjArray[arrayIndex]?.cityName);
+    appendCity(cityObjArray[arrayIndex].cityName);
   }
+
 };
 
 var appendCity = function (cityName) {
@@ -60,8 +61,26 @@ var appendCity = function (cityName) {
   var cityButton = $("<button class=button></button>")
     .text(cityName)
     .addClass("has-background-success-light is-responsive is-fullwidth mb-1");
-  $("#city-buttons").prepend(cityButton); // Append new city button element
+    // Prepend new city button element (it appears on top)
+  $("#city-buttons").prepend(cityButton);
 };
+
+var setLocalStorage = function(cityObjArray){
+  //***********************jkb */
+  // Reset local storage with the most recent 3 cities
+  // Clear local storage to refresh it
+  console.log("clearing localStorage");
+  localStorage.removeItem("cityInfo");
+  
+  //Remove the oldest array object if needed
+  const lengthArray = cityObjArray.length;
+
+  if (lengthArray > 3) {
+    cityObjArray.shift();
+    console.log("cityObjArray.shift();= ",cityObjArray );
+  }
+  localStorage.setItem("cityInfo", JSON.stringify(cityObjArray));
+}
 
 var citySearchHandler = function (event) {
   event.preventDefault();
@@ -94,7 +113,7 @@ var getCityLatLong = function (cityName) {
       // request was successful
       if (response.ok) {
         response.json().then(function (cityData) {
-          console.log("*******************************  data= ", cityData);
+          console.log("*******************************  cityData= ", cityData);
           if (!cityData[0]) {
             // no data returned for cityName
             console.log("no data returned - invalid city????");
@@ -107,8 +126,16 @@ var getCityLatLong = function (cityName) {
               latitude: cityData[0].lat,
               longitude: cityData[0].lon,
             };
+
+            // Reset local storage
             cityObjArray.push(cityObj);
-            localStorage.setItem("cityInfo", JSON.stringify(cityObjArray));
+            const lengthArray = cityObjArray.length;
+            setLocalStorage(cityObjArray);
+
+            // Remove extra buttons
+            if (lengthArray > 2) {
+              $("#city-buttons").children().last().remove();
+            }
 
             // Add city button to search button list and get the weather
             appendCity(cityObj.cityName);
@@ -164,8 +191,6 @@ var getWeather = function (latitude, longitude) {
               "https://openweathermap.org/img/w/" + iconCode + ".png";
             $("#today-icon").html(
               "<img src='" + iconUrl + "'>" );
-
-            //document.getElementById('icon').src="http://openweathermap.org/img/w/"+d.weather[0].icon+".png";
 
             // Display the temp/wind/humidity
             $("#today-temperature").text("Temp: " + data.current.temp + "F");
