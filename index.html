@@ -55,7 +55,7 @@
               <div class="column is-3" >
                 <!-- Input city name form -->
                 <form class="control pb-1" id="city-search-form" >
-                  <input class="input has-text-centered" type="text" placeholder="City Name" id="city-name">
+                  <input class="input has-text-centered" type="text" placeholder="Major City Name" id="city-name">
                   <button id="city-submit" class="button is-success has-background-success-dark is-fullwidth">Submit</button>
                 </form>
                 <!-- Saved city buttons -->
@@ -66,9 +66,12 @@
               </div>
               <!-- Display weather section -->
               <div class="column is-9">
-                <div class="level-item">
-                  <h2 class="is-size-3 title has-text-centered pb-4" id="city-date"> 
-                    <span id="city-date">City and Date</span>
+                <div>
+                  <h2 class="is-size-3 title has-text-centered" id="city-date"> 
+                    <span id="city-display">City, State</span>
+                  </h2>
+                  <h2 class="is-size-3 subtitle has-text-centered" id="date-display"> 
+                    <span id="city-date">(Date)</span>
                   </h2>
                   <div class="weather-info icon-size" id="today-icons"></div>
                 </div>  
@@ -90,12 +93,12 @@
                   </div>
                   <div class="column">
                     <ul class="city-today-group">
-                      <li class="weather-info" id="today-temperature">Temp: </li>
-                      <li class="weather-info" id="today-winds">Winds: </li>
-                      <li class="weather-info" id="today-humidity">Humidity: </li>
-                      <div class="weather-info level-left flex-row today-flex-group" id="today-uv-group">
-                        <p>UV Index:   </p>
-                        <p class="weather-info" id="today-uv-index"></p>
+                      <li id="today-temperature">Temp: </li>
+                      <li id="today-winds">Winds: </li>
+                      <li id="today-humidity">Humidity: </li>
+                      <div class="level-left flex-row today-flex-group" id="today-uv-group">
+                        <p class="pr-1">UV Index:</p>
+                        <p class="mx-2 px-2" id="today-uv-index"></p>
                       </div>
                     </ul>
                   </div>
