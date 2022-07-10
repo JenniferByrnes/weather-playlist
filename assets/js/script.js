@@ -272,11 +272,11 @@ var getPlaylist = function () {
   var globalTemp = currentTemp;
   console.log("currentTemp", currentTemp);
   if (globalTemp > 80) {
-    playlistOption = "sunny";
-  } else if (globalTemp < 80 && globalTemp > 50) {
-    playlistOption = "warm";
+    playlistOption = "happy";
+  } else if (globalTemp < 80 && globalTemp > 58) {
+    playlistOption = "warm-vibes";
   } else {
-    playlistOption = "cold";
+    playlistOption = "acoustic";
   }
 
   fetch(
@@ -296,11 +296,10 @@ var getPlaylist = function () {
 //*******************************************************/
 
   //var spotifyPlaylistThing;
-  // for my testing - I use only "warm"  This needs fixing!!!!
   console.log("before 2nd fetch");
   fetch(
     "https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=" +
-      "warm" +
+      playlistOption +
       "&type=playlist&perPage=3"
   )
     .then(function (response) {
@@ -321,7 +320,7 @@ var getPlaylist = function () {
             PlaylistName = spotifyPlaylistThing.playlists.items[0].name;
             var spotifyPlaylistObj = {
             name: spotifyPlaylistThing.playlists.items[0].name,
-            playlistUrl: spotifyPlaylistThing.playlists.items[0].url,
+            playlistUrl: spotifyPlaylistThing.playlists.items[0].external_urls.spotify,
             imageUrl: spotifyPlaylistThing.playlists.items[0].images[0].url
             };
             $("#spot-test-title-1").text(spotifyPlaylistObj.name);
@@ -330,6 +329,7 @@ var getPlaylist = function () {
 
             // use html element declared in index.html.  This is easier - one line.
             $("#spot-test-img-1").attr("src", spotifyPlaylistObj.imageUrl);
+            $("#spot-test-link-1").text(spotifyPlaylistObj.playlistUrl);
             // make DOM elements in javascript (both do the same basic thing).  This fit nicely into the div that we have set.
               //var imageEl = document.createElement ("div")
               //var image = document.createElement ("img")
@@ -341,7 +341,7 @@ var getPlaylist = function () {
             PlaylistName = spotifyPlaylistThing.playlists.items[1].name;
             spotifyPlaylistObj = {
             name: spotifyPlaylistThing.playlists.items[1].name,
-            playlistUrl: spotifyPlaylistThing.playlists.items[1].url,
+            playlistUrl: spotifyPlaylistThing.playlists.items[1].external_urls.spotify,
             imageUrl: spotifyPlaylistThing.playlists.items[1].images[0].url
             };
             $("#spot-test-title-2").text(spotifyPlaylistObj.name);
@@ -349,13 +349,13 @@ var getPlaylist = function () {
 
             // use html element declared in index.html.  This is easier - one line.
             $("#spot-test-img-2").attr("src", spotifyPlaylistObj.imageUrl);
-
+            $("#spot-test-link-2").text(spotifyPlaylistObj.playlistUrl);
             // Prepare object to push into array and make new selector button
             console.log("spotifyPlaylistThing=", spotifyPlaylistThing.playlists.items[2]);
             PlaylistName = spotifyPlaylistThing.playlists.items[2].name;
             spotifyPlaylistObj = {
             name: spotifyPlaylistThing.playlists.items[2].name,
-            playlistUrl: spotifyPlaylistThing.playlists.items[2].url,
+            playlistUrl: spotifyPlaylistThing.playlists.items[2].external_urls.spotify,
             imageUrl: spotifyPlaylistThing.playlists.items[2].images[0].url
             };
             $("#spot-test-title-3").text(spotifyPlaylistObj.name);
@@ -363,7 +363,7 @@ var getPlaylist = function () {
 
             // use html element declared in index.html.  This is easier - one line.
             $("#spot-test-img-3").attr("src", spotifyPlaylistObj.imageUrl);
-
+            $("#spot-test-link-3").text(spotifyPlaylistObj.playlistUrl);
 
 
           //}
