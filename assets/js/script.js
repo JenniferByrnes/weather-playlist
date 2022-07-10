@@ -152,6 +152,7 @@ var getCityLatLong = function (cityName) {
 };
 
 var getWeather = function (latitude, longitude) {
+  console.log(" in getPlaylist");
   // format the openwathermap api url
 
   var apiUrl =
@@ -277,16 +278,104 @@ var getPlaylist = function () {
   } else {
     playlistOption = "cold";
   }
+
   fetch(
     "https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=" +
       playlistOption +
       "&type=playlist&perPage=3"
   )
+
+
     .then((response) => response.json())
-    .then((result) => console.log(result))
+    .then((result) => console.log("[playlist???=", result))
     .catch((error) => console.log("error", error));
+
+
+//*******************************************************/
+//             jkb Test code goes here                */
+//*******************************************************/
+
+  //var spotifyPlaylistThing;
+  // for my testing - I use only "warm"  This needs fixing!!!!
+  console.log("before 2nd fetch");
+  fetch(
+    "https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=" +
+      "warm" +
+      "&type=playlist&perPage=3"
+  )
+    .then(function (response) {
+      // request was successful
+      console.log("in 2nd fetch");
+      if (response.ok) {
+        response.json().then(function (spotifyPlaylistThing) {
+          console.log("in 2nd fetch - response ok");
+          console.log("spotifyPlaylistThing=", spotifyPlaylistThing);
+          //if (!spotifyPlaylistThing[0]) {
+            //console.log("in 2nd fetch - no data");
+            //no data returned for spotifyPlaylist
+            //console.log("no data returned - invalid spotifyPlaylistThing????");
+          //} else {
+            console.log("in 2nd fetch - ready to parse");
+            // Prepare object to push into array and make new selector button
+            console.log("spotifyPlaylistThing=", spotifyPlaylistThing.playlists.items[0]);
+            PlaylistName = spotifyPlaylistThing.playlists.items[0].name;
+            var spotifyPlaylistObj = {
+            name: spotifyPlaylistThing.playlists.items[0].name,
+            playlistUrl: spotifyPlaylistThing.playlists.items[0].url,
+            imageUrl: spotifyPlaylistThing.playlists.items[0].images[0].url
+            };
+            $("#spot-test-title-1").text(spotifyPlaylistObj.name);
+            $("#spot-test-title").text("Click on the music that you want to hear.");
+            //$("#spot-test-img-1").
+
+            // use html element declared in index.html.  This is easier - one line.
+            $("#spot-test-img-1").attr("src", spotifyPlaylistObj.imageUrl);
+            // make DOM elements in javascript (both do the same basic thing).  This fit nicely into the div that we have set.
+              //var imageEl = document.createElement ("div")
+              //var image = document.createElement ("img")
+              //image.setAttribute ("src", spotifyPlaylistObj.imageUrl)
+              //imageEl.append (image)
+              //$("#spot-test-container-1").append (imageEl)
+            // Prepare object to push into array and make new selector button
+            console.log("spotifyPlaylistThing=", spotifyPlaylistThing.playlists.items[1]);
+            PlaylistName = spotifyPlaylistThing.playlists.items[1].name;
+            spotifyPlaylistObj = {
+            name: spotifyPlaylistThing.playlists.items[1].name,
+            playlistUrl: spotifyPlaylistThing.playlists.items[1].url,
+            imageUrl: spotifyPlaylistThing.playlists.items[1].images[0].url
+            };
+            $("#spot-test-title-2").text(spotifyPlaylistObj.name);
+            //$("#spot-test-img-1").
+
+            // use html element declared in index.html.  This is easier - one line.
+            $("#spot-test-img-2").attr("src", spotifyPlaylistObj.imageUrl);
+
+            // Prepare object to push into array and make new selector button
+            console.log("spotifyPlaylistThing=", spotifyPlaylistThing.playlists.items[2]);
+            PlaylistName = spotifyPlaylistThing.playlists.items[2].name;
+            spotifyPlaylistObj = {
+            name: spotifyPlaylistThing.playlists.items[2].name,
+            playlistUrl: spotifyPlaylistThing.playlists.items[2].url,
+            imageUrl: spotifyPlaylistThing.playlists.items[2].images[0].url
+            };
+            $("#spot-test-title-3").text(spotifyPlaylistObj.name);
+            //$("#spot-test-img-1").
+
+            // use html element declared in index.html.  This is easier - one line.
+            $("#spot-test-img-3").attr("src", spotifyPlaylistObj.imageUrl);
+
+
+
+          //}
+        })
+      }
+    
+    
+  })
 };
 
+
+//*******************************************************/
 // Error handling
 // This code creates a modal box surrounded by an opaque background.
 // The user can look at the message and then click anywhere, hit escape, or 
@@ -332,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (event) => {
     const e = event || window.event;
 
-    if (e.keyCode === 27) { // Escape key
+    if (e.key === 27) { // Escape key
       closeAllModals();
     }
   });
