@@ -1,7 +1,5 @@
 //  This is where all global variable should be declared.
 var errorMessage = "Error message not set.";
-var citySearchEl = $("#city-search-form");
-var cityNameEl = $("#city-name");
 var formalCityName;
 var stateName = "";
 
@@ -12,7 +10,6 @@ var currentTemp;
 
 // Get the city info from local storage to display
 var cityObjArray = JSON.parse(localStorage.getItem("cityInfo") || "[]");
-var cityButtonEl = document.querySelector("#city-buttons");
 
 //*******************************************************/
 //             Meme/Inspiration code goes here                */
@@ -90,11 +87,10 @@ var citySearchHandler = function (event) {
   if (cityName) {
     getCityLatLong(cityName);
     // clear input field content
-    cityNameEl.val("");
+    $("#city-name").val("");
   } else {
     errorMessage = "Please enter a city name";
     $("#js-modal-trigger").trigger("click");
-    return;
   }
 };
 
@@ -438,8 +434,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Highlight playlist on hover
+$("#spot-test-img-1").hover(function(){
+  $(this).css("outline-style", "solid");
+},
+function(){
+  $(this).css("outline-style", "none");
+});
+$("#spot-test-img-2").hover(function(){
+  $(this).css("outline-style", "solid");
+},
+function(){
+  $(this).css("outline-style", "none");
+});
+$("#spot-test-img-3").hover(function(){
+  $(this).css("outline-style", "solid");
+},
+function(){
+  $(this).css("outline-style", "none");
+});
+
 //memeFunction();
 renderCitySelectors();
-citySearchEl.on("submit", citySearchHandler);
-//$("#city-submit").on('submit', citySearchHandler);
-cityButtonEl.addEventListener("click", buttonClickHandler);
+$("#city-search-form").on('submit', citySearchHandler);
+$("#city-buttons").on("click", buttonClickHandler);
