@@ -1,156 +1,260 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-  <link href="https://openweathermap.org/img/wn/10d@2x.png" />
-  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="./assets/css/style.css" />
-  <title>Weather Playlist</title>
-  
-</head>
-<body>
-  
-  <!-- Main Body-->
-  <section class="hero is-small is-link has-background-success-dark">
-    <div class="hero-body">
-      <div class="container has-text-centered"> 
-        <p class="title">Weather Playlist</p>
-        <p class="subtitle">
-          Find the right music to start your <strong>Great Day</strong>!
-        </p>
-      </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <div class="columns is-vcentered">
-                <!-- Here is the Meme div(s) -->
-        <!-- There are two (one hidden for differing screen sizes)-->
-        <!-- Use specific classes instead of id's to change things-->
-        <!-- If this too cumbersome, delete the 1st one and keep the second-->
-        <div class="column is-3 box is-hidden-touch meme-div">
-          <h2 class="is-size-3 title has-text-centered meme-title">Meme of the Day</h2>
-          <p class="has-text-centered meme-subtitle">An awesome meme to start your day</p>
-          <div class="container meme-container">
-            <img src="http://placeimg.com/640/360/any" class="meme-img">
-          </div>
+    <link href="https://openweathermap.org/img/wn/10d@2x.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Weather Playlist</title>
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+  </head>
+  <body>
+    <!-- Main Body-->
+    <section class="hero is-small is-link has-background-success-dark">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title">Weather Playlist</p>
+          <p class="subtitle">
+            Find the right music to start your <strong>Great Day</strong>!
+          </p>
         </div>
-        <div class="column is-9">
-          <!-- Weather section -->
-          <div class="box" id="weather-box">
-            <div class="columns">
-              <!-- Input city selector column -->
-              <div class="column is-3" >
-                <!-- Input city name form -->
-                <form class="control pb-1" id="city-search-form" >
-                  <input class="input has-text-centered" type="text" placeholder="City Name" id="city-name">
-                  <button id="city-submit" class="button is-success has-background-success-dark is-fullwidth">Submit</button>
-                </form>
-                <!-- Saved city buttons -->
-                <div id="city-selection-group">
-                  <container id="city-buttons" class="buttons are-small">
-                  </container>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="columns is-vcentered">
+          <!-- Here is the Meme div(s) -->
+          <!-- There are two (one hidden for differing screen sizes)-->
+          <!-- Use specific classes instead of id's to change things-->
+          <!-- If this too cumbersome, delete the 1st one and keep the second-->
+          <div class="column is-3 box is-hidden-touch meme-div">
+            <!---- Hidden Button for error handling -------->
+            <button
+              class="js-modal-trigger is-hidden"
+              id="js-modal-trigger"
+              data-target="modal-error-handling"
+            >
+              Modal button used in JS code
+            </button>
+
+            <h2 class="is-size-3 title has-text-centered meme-title">
+              Meme of the Day
+            </h2>
+            <p class="has-text-centered meme-subtitle">
+              An awesome meme to start your day
+            </p>
+            <div class="container meme-container">
+              <img src="http://placeimg.com/640/360/any" class="meme-img" />
+            </div>
+          </div>
+          <div class="column is-9">
+            <!-- Weather section -->
+            <div class="box" id="weather-box">
+              <div class="columns">
+                <!-- Input city selector column -->
+                <div class="column is-3">
+                  <!-- Input city name form -->
+                  <form class="control pb-1" id="city-search-form">
+                    <input
+                      class="input has-text-centered"
+                      type="text"
+                      placeholder="Major City Name"
+                      id="city-name"
+                    />
+                    <button
+                      id="city-submit"
+                      class="button is-success has-background-success-dark is-fullwidth"
+                    >
+                      Submit
+                    </button>
+                  </form>
+                  <!-- Saved city buttons -->
+                  <div id="city-selection-group">
+                    <container id="city-buttons" class="buttons are-small">
+                    </container>
+                  </div>
                 </div>
-              </div>
-              <!-- Display weather section -->
-              <div class="column is-9">
-                <div class="level-item">
-                  <h2 class="is-size-3 title has-text-centered" id="city-date"> 
-                    <span id="city-date">City and Date</span>
-                  </h2>
-                  <div class="weather-info icon-size" id="today-icon"></div>
-                </div>  
-                <div class="columns">
-                  <div class="column" id="weather-main">weather-main
+                <!-- Display weather section -->
+                <div class="column is-9">
+                  <div>
+                    <h2
+                      class="is-size-3 title has-text-centered"
+                      id="city-date"
+                    >
+                      <span id="city-display">City, State</span>
+                    </h2>
+                    <h2
+                      class="is-size-3 subtitle has-text-centered"
+                      id="date-display"
+                    >
+                      <span id="city-date">(Date)</span>
+                    </h2>
+                    <div class="weather-info icon-size" id="today-icons"></div>
                   </div>
-                  <div class="column">
-                    <ul class="city-today-group">
-                      <li class="weather-info" id="today-temperature">Temp: </li>
-                      <li class="weather-info" id="today-winds">Winds: </li>
-                      <li class="weather-info" id="today-humidity">Humidity: </li>
-                      <div class="weather-info level-left flex-row today-flex-group" id="today-uv-group">
-                        <p>UV Index:   </p>
-                        <p class="weather-info" id="today-uv-index"></p>
+                  <div class="columns is-vcentered">
+                    <div class="column weather-info container">
+                      <div class="is-flex is-flex-direction-column">
+                        <div
+                          class="is-flex is-justify-content-center is-flex-direction-column has-text-centered"
+                          id="weather-right-now"
+                        >
+                          <!-- Description of weather is placed here using script.js -->
+                        </div>
+                        <div class="is-flex is-justify-content-center">
+                          <span class="icon is-large" id="today-icon">
+                            <!-- Icon is placed here using script.js -->
+                          </span>
+                        </div>
+                        <div
+                          class="is-flex is-justify-content-center is-flex-direction-column has-text-centered"
+                          id="weather-main"
+                        >
+                          <!-- Description of weather is placed here using script.js -->
+                        </div>
                       </div>
-                    </ul>
-                  </div>
-                  <div class="column" id="weather-description">weather-description
+                    </div>
+                    <div class="column">
+                      <ul class="city-today-group">
+                        <li id="today-temperature">Temp:</li>
+                        <li id="today-winds">Winds:</li>
+                        <li id="today-humidity">Humidity:</li>
+                        <div
+                          class="level-left flex-row today-flex-group"
+                          id="today-uv-group"
+                        >
+                          <p class="pr-1">UV Index:</p>
+                          <p class="mx-2 px-2" id="today-uv-index"></p>
+                        </div>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- This is the spotify secion -->
-          <!-- This is the title and subtitle (if desired)
+
+            <!-- This is the spotify section -->
+            <!-- This is the title and subtitle (if desired)
           It might be a good spot for some variable to show what 
         factors went into choosing the playlist.... -->
-          <div class="box" id="spotify-div">
-            <h2 class="is-size-3 title has-text-centered" id="spotify-title">Your Playlist</h2>
-            <p id="spotify-subtitle">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam reiciendis libero, explicabo, nam praesentium illo </p>
-            <br>
-            <!-- This is the space for playlists -->
-            <div class="columns" id="spotify-columns">
-              <div class="box column has-background-success-dark m-0">
-                <div id="spotify">
-                  <h2 id="playlist-name1"></h2>
-                  <img src="" img id="img1">
-                  <link href="/" id="playlist-link1"</link>
+            <div class="box" id="spotify-div">
+              <h2 class="is-size-3 title has-text-centered" id="spotify-title">
+                Your Playlist
+              </h2>
+              <h2
+                class="is-size-5 subtitle has-text-centered"
+                id="spot-test-title"
+              ></h2>
+
+              <!-- This is the space for playlists -->
+              <div class="columns" id="spotify-columns">
+                <div class="box column has-background-success-dark m-2">
+                  <div id="spotify-btn-1">
+                    <p id="spot-test-title-1" class="has-text-centered pb-3"></p>
+                    <div>
+                      <a
+                        id="spot-playlist-1"
+                        href="http://www.spotify.com"
+                        target="_blank"
+                      >
+                        <img id="spot-test-img-1" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="box column has-background-success-dark m-0">
-                <div id="spotify-2">
-                  <h2 id="playlist-name2"></h2>
-                  <img src="" img id="img2">
-                 <link href="/" id="playlist-link2"</link>                
+                <div class="box column has-background-success-dark m-2">
+                  <div id="spotify-btn-2">
+                    <p id="spot-test-title-2" class="has-text-centered pb-3"></p>
+                    <a
+                      id="spot-playlist-2"
+                      href="http://www.spotify.com"
+                      target="_blank"
+                    >
+                      <img id="spot-test-img-2" />
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div class="box has-background-success-dark column">
-                <div id="spotify-3">
-                  <h2 id="playlist-name3"></h2>
-                  <img src="" img id="img3">
-                  <link href="/" id="playlist-link3"</link>
+                <div class="box has-background-success-dark column m-2">
+                  <div id="spotify-btn-3">
+                    <p id="spot-test-title-3" class="has-text-centered pb-3"></p>
+                    <a
+                      id="spot-playlist-3"
+                      href="http://www.spotify.com"
+                      target="_blank"
+                    >
+                      <img id="spot-test-img-3" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- Here is the Meme div(s) -->
-        <!-- There are two (one hidden for differing screen sizes)-->
-        <!-- Use specific classes instead of id's to change things-->
-        <!-- If this too cumbersome, delete the 1st one and keep the second
-             then, all of the classes with the word "meme" could be id's
-             it's the only way I could think of to keep this section on the left for most of the screen sizes.  -->
-        <div class="column is-3 box is-hidden-desktop meme-div">
-          <h2 class="is-size-3 title has-text-centered meme-title">Meme of the Day</h2>
-          <p class="has-text-centered meme-subtitle">An awesome meme to start your day</p>
-          <div class="container meme-container">
-            <img src="http://placeimg.com/640/360/any" class="meme-img">
+          <!-- Here is the Meme div(s) -->
+          <!-- There are two (one hidden for differing screen sizes)-->
+          <!-- Use specific classes instead of id's to change things-->
+          <!-- If this too cumbersome, delete the 1st one and keep the second
+        then, all of the classes with the word "meme" could be id's
+        it's the only way I could think of to keep this section on the left for most of the screen sizes.  -->
+          <div class="column is-3 box is-hidden-desktop meme-div">
+            <h2 class="is-size-3 title has-text-centered meme-title">
+              Meme of the Day
+            </h2>
+            <p class="has-text-centered meme-subtitle">
+              An awesome meme to start your day
+            </p>
+            <div class="container meme-container">
+              <!-- <img src="http://placeimg.com/640/360/any" class="meme-img"> -->
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <!-- Amanda and Savannah - just put in your name and github link like mine.
+    <section>
+      <!-- Amanda and Savannah - just put in your name and github link like mine.
     I thought it was a cool feature.... -->
-    <footer class="footer py-5 has-background-warning-light">
-      <div class="content has-text-centered">
-        <p>
-          <strong>Your Weather Playlist</strong> by <a href="https://github.com/JenniferByrnes">Jennifer Byrnes </a> and
-          <a href="http://opensource.org/licenses/mit-license.php">Amanda</a> and <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"> Savannah</a>.
-        </p>
-      </div>
-    </footer>
+      <footer class="footer py-5 has-background-warning-light">
+        <div class="content has-text-centered">
+          <p>
+            <strong>Your Weather Playlist</strong> by
+            <a href="https://github.com/JenniferByrnes">Jennifer Byrnes </a> and
+            <a href="https://github.com/babaphillips">Amanda Phillips</a> and
+            <a href="https://github.com/whittenburgsa"> Savannah Whittenburg</a
+            >.
+          </p>
+        </div>
+      </footer>
+    </section>
 
-  </section>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="./assets/js/script.js"></script>
-</body>
+    <!-- Modal Error Handling -->
+    <!-- This will only display when there is an error being shown -->
+    <div id="modal-error-handling" class="modal">
+      <div class="modal-background"></div>
+
+      <div class="modal-content">
+        <div class="box">
+          <p id="modal-error-message">This gets replaced using JS</p>
+        </div>
+      </div>
+
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
