@@ -43,19 +43,22 @@ function renderImages (data){
 //memeFunction ()
 //*******************************************************/
 //             Weather section code goes here                */
+// Display buttons for cities in local storage
 var renderCitySelectors = function () {
   var length = cityObjArray.length;
   console.log(
-    "***************************************cityObjArray=",
+    "***********************cityObjArray=",
     cityObjArray
   );
-  //cityObjArray.forEach(function(placeHolder, arrayIndex) {
+  
+  // Loop through the number of stored cities
   for (let arrayIndex = 0; arrayIndex < length; arrayIndex++) {
     // Create button for city choices
     appendCity(cityObjArray[arrayIndex].cityName);
   }
 };
 
+// add the city selector buttons (newest on top)
 var appendCity = function (cityName) {
   // Create new city button and add it to the list
   var cityButton = $("<button class=button></button>")
@@ -65,13 +68,13 @@ var appendCity = function (cityName) {
   $("#city-buttons").prepend(cityButton);
 };
 
+// clear local storage and add back only the three most recent cities
 var setLocalStorage = function(cityObjArray){
-  //***********************jkb */
-  // Reset local storage with the most recent 3 cities
+
   // Clear local storage to refresh it
   localStorage.removeItem("cityInfo");
   
-  //Remove the oldest array object if needed
+  // Reset local storage with the most recent 3 cities
   const lengthArray = cityObjArray.length;
   if (lengthArray > 3) {
     cityObjArray.shift();
@@ -79,6 +82,7 @@ var setLocalStorage = function(cityObjArray){
   localStorage.setItem("cityInfo", JSON.stringify(cityObjArray));
 }
 
+// User has typed in a city and hit Submit
 var citySearchHandler = function (event) {
   event.preventDefault();
 
@@ -97,6 +101,7 @@ var citySearchHandler = function (event) {
   }
 };
 
+// Given a city, get the lat/long
 var getCityLatLong = function (cityName) {
   // format the openwathermap api url
   var apiUrl =
@@ -110,10 +115,11 @@ var getCityLatLong = function (cityName) {
       // request was successful
       if (response.ok) {
         response.json().then(function (cityData) {
-          console.log("*******************************  cityData= ", cityData);
+          console.log("**************************  cityData= ", cityData);
           if (!cityData[0]) {
             // no data returned for cityName
-            console.log("no data returned - invalid city????");
+            errorMessage = ("No city with that name was found. Please try again");
+            $("#js-modal-trigger").trigger("click");
           } else {
             // Prepare object to push into array and make new selector button
             formalCityName = cityData[0].name;
@@ -135,7 +141,7 @@ var getCityLatLong = function (cityName) {
               $("#city-buttons").children().last().remove();
             }
 
-            // Add city button to search button list and get the weather
+            // Add city button to select button list and get the weather
             appendCity(cityObj.cityName);
             getWeather(cityObj.latitude, cityObj.longitude);
           }
@@ -151,10 +157,10 @@ var getCityLatLong = function (cityName) {
     });
 };
 
+// Given lat/long find the weather from Open Weather API
 var getWeather = function (latitude, longitude) {
-  console.log(" in getPlaylist");
-  // format the openwathermap api url
 
+  // format the openwathermap api url
   var apiUrl =
     "https://api.openweathermap.org/data/2.5/onecall?lat=" +
     latitude +
@@ -173,12 +179,10 @@ var getWeather = function (latitude, longitude) {
             // no data returned
             errorMessage = ("The OpenWeather API did not respond. Please try again");
             $("#js-modal-trigger").trigger("click");
-          } else {
-            console.log("Loading weather data");
-
-            // Load window for today's data
+          } 
+          else {
+            // Display today's date
             const initialDate = new Date();
-
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             $("#city-display").html(
               formalCityName + ", " + stateName
