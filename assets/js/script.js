@@ -295,8 +295,7 @@ getPlaylist = function () {
   }
 
   fetch(
-    "https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=" +
-      playlistOption +
+    "https://v1.nocodeapi.com/babaphillips/spotify/PZbXydYnaLTYpbUy/search?q=" + playlistOption +
       "&type=playlist&perPage=3"
   )
     .then((response) => response.json())
@@ -306,7 +305,7 @@ getPlaylist = function () {
   //var spotifyPlaylistThing;
   console.log("before 2nd fetch");
   fetch(
-    "https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=" +
+    "https://v1.nocodeapi.com/babaphillips/spotify/PZbXydYnaLTYpbUy/search?q=" +
       playlistOption +
       "&type=playlist&perPage=3"
   ).then(function (response) {
