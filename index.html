@@ -5,6 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
+<<<<<<< HEAD
+  <link href="https://openweathermap.org/img/wn/10d@2x.png" />
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <title>Weather Playlist</title>
+  
+</head>
+<body>
+  
+  <!-- Main Body-->
+  <section class="hero is-small is-link has-background-success-dark">
+    <div class="hero-body">
+      <div class="container has-text-centered"> 
+        <p class="title">Weather Playlist</p>
+        <p class="subtitle">
+          Find the right music to start your <strong>Great Day</strong>!
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="columns is-vcentered">
+                <!-- Here is the Meme div(s) -->
+        <!-- There are two (one hidden for differing screen sizes)-->
+        <!-- Use specific classes instead of id's to change things-->
+        <!-- If this too cumbersome, delete the 1st one and keep the second-->
+        <div class="column is-3 box is-hidden-touch meme-div">
+
+          <!---- Hidden Button for error handling -------->
+          <button class="js-modal-trigger is-hidden" id="js-modal-trigger" data-target="modal-error-handling">
+            Modal button used in JS code
+          </button>
+          
+          <h2 class="is-size-3 title has-text-centered meme-title">Meme of the Day</h2>
+          <p class="has-text-centered meme-subtitle">An awesome meme to start your day</p>
+          <div class="container meme-container">
+          
+          </div>
+=======
     <link href="https://openweathermap.org/img/wn/10d@2x.png" />
     <link
       href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap"
@@ -31,6 +73,7 @@
           <p class="subtitle">
             Find the right music to start your <strong>Great Day</strong>!
           </p>
+>>>>>>> develop
         </div>
       </div>
     </header>
@@ -214,6 +257,19 @@
             </div>
           </div>
         </div>
+<<<<<<< HEAD
+        <!-- Here is the Meme div(s) -->
+        <!-- There are two (one hidden for differing screen sizes)-->
+        <!-- Use specific classes instead of id's to change things-->
+        <!-- If this too cumbersome, delete the 1st one and keep the second
+             then, all of the classes with the word "meme" could be id's
+             it's the only way I could think of to keep this section on the left for most of the screen sizes.  -->
+        <div class="column is-3 box is-hidden-desktop meme-div">
+          <h2 class="is-size-3 title has-text-centered meme-title">Hello!</h2>
+          <p class="has-text-centered meme-subtitle">Here's a cute gif start your day!</p>
+          <div class="container meme-container">
+          </div>
+=======
       </div>
     </section>
 
@@ -240,6 +296,7 @@
       <div class="modal-content">
         <div class="box">
           <p id="modal-error-message">This gets replaced using JS</p>
+>>>>>>> develop
         </div>
       </div>
 
