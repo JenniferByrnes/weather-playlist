@@ -16,12 +16,13 @@ var cityButtonEl = document.querySelector("#city-buttons");
 //*******************************************************/
 //             Meme/Inspiration code goes here                */
 
-var searchInput = "cold"
-var memeContainer = document.querySelector (".meme-container")
+var searchInput = "sunshine" 
+//var memeContainer = document.querySelector (".meme-container")
 var memeFunction = function () {
   console.log("Meme Function call works");
-var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" +
-searchInput + "&api_key=4Mpw5NU7iwGDnG4LF24b8O8qVkX8MzdF&limit=1";
+var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + searchInput + "&rating=g&tag=weather&api_key=4Mpw5NU7iwGDnG4LF24b8O8qVkX8MzdF&limit=1";
+console.log(queryUrl)
+
 fetch (queryUrl)
   .then (function(res){
     return res.json()
@@ -33,13 +34,12 @@ fetch (queryUrl)
   )
 }
 function renderImages (data){
-  var imageEl = document.createElement ("div")
+  //var imageEl = document.createElement ("div")
   var image = document.createElement ("img")
   image.setAttribute ("src", data.data[0].images.fixed_height.url)
-  imageEl.append (image)
-  memeContainer.append (imageEl)
+  $ (".meme-container").append (image)
+  //memeContainer.append (imageEl)
 }
-memeFunction ()
 //*******************************************************/
 //             Weather section code goes here                */
 var renderCitySelectors = function () {
