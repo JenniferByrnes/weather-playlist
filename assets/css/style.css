@@ -1,0 +1,17 @@
+body{
+  background-image: url("../../images/BackgroundImage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
+
+.footer {
+  background: rgba(76, 175, 80, 0.3);
+  background-color: transparent;
+}
