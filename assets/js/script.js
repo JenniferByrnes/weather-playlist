@@ -32,6 +32,7 @@ fetch (queryUrl)
   renderImages (data)
   }
   )
+  document.memeFunction("center");
 }
 function renderImages (data){
   //var imageEl = document.createElement ("div")
