@@ -33,8 +33,8 @@ function renderImages(data) {
   //var copywrite = document.createElement("p");
   image.setAttribute("src", data.data[0].images.fixed_height.url);
   $(".meme-container").append(image);
-
 }
+//memeFunction ()
 //*******************************************************/
 //             Weather section code goes here                */
 // Display buttons for cities in local storage
@@ -431,3 +431,4 @@ memeFunction();
 renderCitySelectors();
 $("#city-search-form").on('submit', citySearchHandler);
 $("#city-buttons").on("click", buttonClickHandler);
+
