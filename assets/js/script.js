@@ -12,12 +12,13 @@ var currentTemp;
 var cityObjArray = JSON.parse(localStorage.getItem("cityInfo") || "[]");
 
 //*******************************************************/
-//             Meme/Inspiration code goes here                */
-
-var searchInput = "sunshine"
-
+//             Giphy code goes here                */
 var memeFunction = function () {
+  var searchInput = weatherMain;
   var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + searchInput + "&rating=g&tag=weather&api_key=4Mpw5NU7iwGDnG4LF24b8O8qVkX8MzdF&limit=1";
+
+  console.log("giphy URL = ", queryUrl)
+  console.log("searchInput = ", searchInput)
 
   fetch(queryUrl)
     .then(function (res) {
@@ -30,11 +31,10 @@ var memeFunction = function () {
 function renderImages(data) {
   var imageEl = document.createElement("div");
   var image = document.createElement("img");
-  //var copywrite = document.createElement("p");
   image.setAttribute("src", data.data[0].images.fixed_height.url);
   $(".meme-container").append(image);
 }
-//memeFunction ()
+
 //*******************************************************/
 //             Weather section code goes here                */
 // Display buttons for cities in local storage
@@ -231,6 +231,10 @@ var getWeather = function (latitude, longitude) {
 
             // Call function to get Spotify playlist
             currentTemp = data.current.temp;
+            $("#spotify-div").removeClass("is-hidden"); 
+            $(".meme-div").removeClass("is-hidden"); 
+            $(".meme-container").empty();
+            memeFunction();
             getPlaylist();
           }
         });
@@ -427,8 +431,9 @@ $("#spot-test-img-3").hover(function () {
     $(this).css("outline-style", "none");
   });
 
-memeFunction();
+
 renderCitySelectors();
+document.getElementById("city-name").focus();
 $("#city-search-form").on('submit', citySearchHandler);
 $("#city-buttons").on("click", buttonClickHandler);
 
