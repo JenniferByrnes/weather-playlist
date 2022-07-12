@@ -17,197 +17,200 @@
 
 <body>
   <!-- Main Body-->
-  <header class="hero is-small is-success has-background-success-dark">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <p class="title">Weather Playlist</p>
-        <p class="subtitle">
-          Find the right music to start your <strong>Great Day</strong>!
-        </p>
-      </div>
-    </div>
-  </header>
-  <section class="section">
-    <div class="container">
-      <div class="columns is-vcentered">
-        <!-- Here is the Giphy div(s) -->
-        <!-- There are two (one hidden for differing screen sizes)-->
-        <!-- Use classes instead of specific id's to change things-->
-        <div class="column is-3 box is-hidden is-hidden-touch meme-div">
-          <!---- Hidden Button for error handling -------->
-          <button class="js-modal-trigger is-hidden" id="js-modal-trigger" data-target="modal-error-handling">
-            Modal button used in JS code
-          </button>
-
-          <h2 class="is-size-3 title has-text-centered meme-title">
-            Giphy of the Day
-          </h2>
-          <p class="has-text-centered meme-subtitle">
-            An awesome giphy to start your day
+  <div class="columns is-flex-direction-column is-fullheight-100vh" id="body-div">
+    <header class="column is-narrow hero is-small is-transparent">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title is-size-1 my-0 header-text">Weather Playlist</p>
+          <p class="is-size-3 header-text">
+            Find the right music to start your <span>Great Day</span>!
           </p>
-          <div class="is-flex is-justify-content-center">
-            <div class="container meme-container is-flex is-justify-content-center">
-
-            </div>
-          </div>
-          <div class="has-text-centered">Powered by GIPHY</div>
         </div>
-        <div class="column is-9">
-          <!-- Weather section -->
-          <div class="box" id="weather-box">
-            <div class="columns">
-              <!-- Input city selector column -->
-              <div class="column is-3">
-                <!-- Input city name form -->
-                <form class="control pb-1" id="city-search-form">
-                  <input class="input has-text-centered" type="text" placeholder="Major City Name" id="city-name" />
-                  <button id="city-submit" class="button is-success has-background-success-dark is-fullwidth">
-                    Submit
-                  </button>
-                </form>
-                <!-- Saved city buttons -->
-                <div id="city-selection-group">
-                  <container id="city-buttons" class="buttons are-small">
-                  </container>
-                </div>
+      </div>
+    </header>
+    <section class="column section">
+      <div class="container">
+        <div class="columns is-vcentered">
+          <!-- Here is the Giphy div(s) -->
+          <!-- There are two (one hidden for differing screen sizes)-->
+          <!-- Use classes instead of specific id's to change things-->
+          <div class="column is-3 box is-hidden is-hidden-touch meme-div">
+            <!---- Hidden Button for error handling -------->
+            <button class="js-modal-trigger is-hidden" id="js-modal-trigger" data-target="modal-error-handling">
+              Modal button used in JS code
+            </button>
+
+            <h2 class="is-size-3 title has-text-centered meme-title">
+              Giphy of the Day
+            </h2>
+            <p class="has-text-centered meme-subtitle">
+              An awesome giphy to start your day
+            </p>
+            <div class="is-flex is-justify-content-center">
+              <div class="container meme-container is-flex is-justify-content-center">
+
               </div>
-              <!-- Display weather section -->
-              <div class="column is-9">
-                <div>
-                  <h2 class="is-size-3 title has-text-centered" id="city-date">
-                    <span id="city-display">City, State</span>
-                  </h2>
-                  <h2 class="is-size-3 subtitle has-text-centered" id="date-display">
-                    <span id="city-date">(Date)</span>
-                  </h2>
-                  <div class="weather-info icon-size" id="today-icons"></div>
+            </div>
+            <div class="has-text-centered">Powered by GIPHY</div>
+          </div>
+          <div class="column is-9">
+            <!-- Weather section -->
+            <div class="box" id="weather-box">
+              <div class="columns">
+                <!-- Input city selector column -->
+                <div class="column is-3">
+                  <!-- Input city name form -->
+                  <form class="control pb-1" id="city-search-form">
+                    <input class="input has-text-centered" type="text" placeholder="Major City Name" id="city-name" />
+                    <button id="city-submit" class="button is-success has-background-success-dark is-fullwidth">
+                      Submit
+                    </button>
+                  </form>
+                  <!-- Saved city buttons -->
+                  <div id="city-selection-group">
+                    <container id="city-buttons" class="buttons are-small">
+                    </container>
+                  </div>
                 </div>
-                <div class="columns is-vcentered">
-                  <div class="column weather-info container">
-                    <div class="is-flex is-flex-direction-column">
-                      <div class="is-flex is-justify-content-center is-flex-direction-column has-text-centered"
-                        id="weather-right-now">
-                        <!-- Description of weather is placed here using script.js -->
-                      </div>
-                      <div class="is-flex is-justify-content-center">
-                        <span class="icon is-large" id="today-icon">
-                          <!-- Icon is placed here using script.js -->
-                        </span>
-                      </div>
-                      <div class="is-flex is-justify-content-center is-flex-direction-column has-text-centered"
-                        id="weather-main">
-                        <!-- Description of weather is placed here using script.js -->
+                <!-- Display weather section -->
+                <div class="column is-9">
+                  <div>
+                    <h2 class="is-size-3 title has-text-centered" id="city-date">
+                      <span id="city-display">City, State</span>
+                    </h2>
+                    <h2 class="is-size-3 subtitle has-text-centered" id="date-display">
+                      <span id="city-date">(Date)</span>
+                    </h2>
+                    <div class="weather-info icon-size" id="today-icons"></div>
+                  </div>
+                  <div class="columns is-vcentered">
+                    <div class="column weather-info container">
+                      <div class="is-flex is-flex-direction-column">
+                        <div class="is-flex is-justify-content-center is-flex-direction-column has-text-centered"
+                          id="weather-right-now">
+                          <!-- Description of weather is placed here using script.js -->
+                        </div>
+                        <div class="is-flex is-justify-content-center">
+                          <span class="icon is-large" id="today-icon">
+                            <!-- Icon is placed here using script.js -->
+                          </span>
+                        </div>
+                        <div class="is-flex is-justify-content-center is-flex-direction-column has-text-centered"
+                          id="weather-main">
+                          <!-- Description of weather is placed here using script.js -->
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="column">
-                    <ul class="city-today-group">
-                      <li id="today-temperature">Temp:</li>
-                      <li id="today-winds">Winds:</li>
-                      <li id="today-humidity">Humidity:</li>
-                      <div class="level-left flex-row today-flex-group" id="today-uv-group">
-                        <p class="pr-1">UV Index:</p>
-                        <p class="mx-2 px-2" id="today-uv-index"></p>
-                      </div>
-                    </ul>
+                    <div class="column">
+                      <ul class="city-today-group">
+                        <li id="today-temperature">Temp:</li>
+                        <li id="today-winds">Winds:</li>
+                        <li id="today-humidity">Humidity:</li>
+                        <div class="level-left flex-row today-flex-group" id="today-uv-group">
+                          <p class="pr-1">UV Index:</p>
+                          <p class="mx-2 px-2" id="today-uv-index"></p>
+                        </div>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- This is the spotify section -->
-          <div class="box is-hidden" id="spotify-div">
-            <h2 class="is-size-3 title has-text-centered" id="spotify-title">
-              Your Playlist
-            </h2>
-            <h2 class="is-size-5 subtitle has-text-centered" id="spot-test-title"></h2>
+            <!-- This is the spotify section -->
+            <div class="box is-hidden" id="spotify-div">
+              <h2 class="is-size-3 title has-text-centered" id="spotify-title">
+                Your Playlist
+              </h2>
+              <h2 class="is-size-5 subtitle has-text-centered" id="spot-test-title"></h2>
 
-            <!-- This is the space for playlists -->
-            <div class="columns" id="spotify-columns">
-              <div class="box column has-background-success-dark m-2">
-                <div id="spotify-btn-1">
-                  <p id="spot-test-title-1" class="has-text-centered pb-3"></p>
-                  <div>
-                    <a id="spot-playlist-1" href="http://www.spotify.com" target="_blank">
-                      <img id="spot-test-img-1" />
+              <!-- This is the space for playlists -->
+              <div class="columns" id="spotify-columns">
+                <div class="box column has-background-success-dark m-2">
+                  <div id="spotify-btn-1">
+                    <p id="spot-test-title-1" class="has-text-centered pb-3"></p>
+                    <div>
+                      <a id="spot-playlist-1" href="http://www.spotify.com" target="_blank">
+                        <img id="spot-test-img-1" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="box column has-background-success-dark m-2">
+                  <div id="spotify-btn-2">
+                    <p id="spot-test-title-2" class="has-text-centered pb-3"></p>
+                    <a id="spot-playlist-2" href="http://www.spotify.com" target="_blank">
+                      <img id="spot-test-img-2" />
+                    </a>
+                  </div>
+                </div>
+                <div class="box has-background-success-dark column m-2">
+                  <div id="spotify-btn-3">
+                    <p id="spot-test-title-3" class="has-text-centered pb-3"></p>
+                    <a id="spot-playlist-3" href="http://www.spotify.com" target="_blank">
+                      <img id="spot-test-img-3" />
                     </a>
                   </div>
                 </div>
               </div>
-              <div class="box column has-background-success-dark m-2">
-                <div id="spotify-btn-2">
-                  <p id="spot-test-title-2" class="has-text-centered pb-3"></p>
-                  <a id="spot-playlist-2" href="http://www.spotify.com" target="_blank">
-                    <img id="spot-test-img-2" />
-                  </a>
-                </div>
-              </div>
-              <div class="box has-background-success-dark column m-2">
-                <div id="spotify-btn-3">
-                  <p id="spot-test-title-3" class="has-text-centered pb-3"></p>
-                  <a id="spot-playlist-3" href="http://www.spotify.com" target="_blank">
-                    <img id="spot-test-img-3" />
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Here is the Meme div(s) -->
-        <!-- There are two (one hidden for differing screen sizes)-->
-        <!-- Use classes instead of specific id's to change things-->
-        <div class="column is-3 box is-hidden is-hidden-desktop meme-div">
-          <h2 class="is-size-3 title has-text-centered meme-title">
-            Giphy of the Day
-          </h2>
-          <p class="has-text-centered meme-subtitle">
-            An awesome giphy to start your day
+          <!-- Here is the Meme div(s) -->
+          <!-- There are two (one hidden for differing screen sizes)-->
+          <!-- Use classes instead of specific id's to change things-->
+          <div class="column is-3 box is-hidden is-hidden-desktop meme-div">
+            <h2 class="is-size-3 title has-text-centered meme-title">
+              Giphy of the Day
+            </h2>
+            <p class="has-text-centered meme-subtitle">
+              An awesome giphy to start your day
+            </p>
+            <div class="is-flex is-justify-content-center">
+              <div class="container meme-container is-flex is-justify-content-center">
+              </div>
+
+            </div>
+            <div class="has-text-centered">Powered by GIPHY</div>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- Modal Error Handling -->
+    <!-- This will only display when there is an error being shown -->
+    <div id="modal-error-handling" class="modal">
+      <div class="modal-background"></div>
+
+      <div class="modal-content">
+        <div class="box">
+          <p id="modal-error-message">This gets replaced using JS</p>
+        </div>
+      </div>
+
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    </section>
+
+
+    <section class="column is-narrow">
+      <!-- Footer - includes links to GitHub repos -->
+      <footer class="footer py-5 has-background-warning-light">
+        <div class="content has-text-centered">
+          <p>
+            <strong>Your Weather Playlist</strong> by
+            <a href="https://github.com/JenniferByrnes">Jennifer Byrnes </a> and
+            <a href="https://github.com/babaphillips">Amanda Phillips</a> and
+            <a href="https://github.com/whittenburgsa"> Savannah Whittenburg</a>.
           </p>
-          <div class="is-flex is-justify-content-center">
-            <div class="container meme-container is-flex is-justify-content-center">
-            </div>
-
-          </div>
-          <div class="has-text-centered">Powered by GIPHY</div>
         </div>
-      </div>
-    </div>
-    </div>
-  </section>
-
-  <section>
-    <!-- Footer - includes links to GitHub repos -->
-    <footer class="footer py-5 has-background-warning-light">
-      <div class="content has-text-centered">
-        <p>
-          <strong>Your Weather Playlist</strong> by
-          <a href="https://github.com/JenniferByrnes">Jennifer Byrnes </a> and
-          <a href="https://github.com/babaphillips">Amanda Phillips</a> and
-          <a href="https://github.com/whittenburgsa"> Savannah Whittenburg</a>.
-        </p>
-      </div>
-    </footer>
-  </section>
-
-  <!-- Modal Error Handling -->
-  <!-- This will only display when there is an error being shown -->
-  <div id="modal-error-handling" class="modal">
-    <div class="modal-background"></div>
-
-    <div class="modal-content">
-      <div class="box">
-        <p id="modal-error-message">This gets replaced using JS</p>
-      </div>
-    </div>
-
-    <button class="modal-close is-large" aria-label="close"></button>
+      </footer>
+    </section>
   </div>
-
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="./assets/js/script.js"></script>
+
 </body>
 
 </html>

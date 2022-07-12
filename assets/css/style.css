@@ -4,14 +4,22 @@ body{
   background-size: cover;
 }
 
-.header {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
+.is-fullheight-100vh {
+  height: 100vh;
 }
 
+.header-text {
+  color: yellow;
+}
 
-.footer {
+p span {
+  font-weight: bold;
+}
+
+/*
+footer {
   background: rgba(76, 175, 80, 0.3);
   background-color: transparent;
+  margin-top: auto;
 }
+*/

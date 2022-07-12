@@ -29,7 +29,6 @@ var memeFunction = function () {
     });
 };
 function renderImages(data) {
-  var imageEl = document.createElement("div");
   var image = document.createElement("img");
   image.setAttribute("src", data.data[0].images.fixed_height.url);
   $(".meme-container").append(image);
@@ -234,6 +233,7 @@ var getWeather = function (latitude, longitude) {
             $("#spotify-div").removeClass("is-hidden"); 
             $(".meme-div").removeClass("is-hidden"); 
             $(".meme-container").empty();
+            $("#body-div").removeClass("is-fullheight-100vh");
             memeFunction();
             getPlaylist();
           }
