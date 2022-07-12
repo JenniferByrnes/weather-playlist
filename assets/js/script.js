@@ -15,6 +15,7 @@ var cityObjArray = JSON.parse(localStorage.getItem("cityInfo") || "[]");
 //             Meme/Inspiration code goes here                */
 
 var searchInput = "sunshine" 
+console.log(searchInput)
 //var memeContainer = document.querySelector (".meme-container")
 var memeFunction = function () {
   console.log("Meme Function call works");
@@ -30,7 +31,7 @@ fetch (queryUrl)
   renderImages (data)
   }
   )
-  document.memeFunction("center");
+  //document.memeFunction("center");
 }
 function renderImages (data){
   //var imageEl = document.createElement ("div")
@@ -454,7 +455,7 @@ function(){
   $(this).css("outline-style", "none");
 });
 
-//memeFunction();
+memeFunction();
 renderCitySelectors();
 $("#city-search-form").on('submit', citySearchHandler);
 $("#city-buttons").on("click", buttonClickHandler);
