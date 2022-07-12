@@ -14,30 +14,26 @@ var cityObjArray = JSON.parse(localStorage.getItem("cityInfo") || "[]");
 //*******************************************************/
 //             Meme/Inspiration code goes here                */
 
-var searchInput = "sunshine" 
-//var memeContainer = document.querySelector (".meme-container")
-var memeFunction = function () {
-  console.log("Meme Function call works");
-var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + searchInput + "&rating=g&tag=weather&api_key=4Mpw5NU7iwGDnG4LF24b8O8qVkX8MzdF&limit=1";
-console.log(queryUrl)
+var searchInput = "sunshine"
 
-fetch (queryUrl)
-  .then (function(res){
-    return res.json()
-  }
-  ).then (function(data){
-    console.log(data)
-  renderImages (data)
-  }
-  )
-  document.memeFunction("center");
-}
-function renderImages (data){
-  //var imageEl = document.createElement ("div")
-  var image = document.createElement ("img")
-  image.setAttribute ("src", data.data[0].images.fixed_height.url)
-  $ (".meme-container").append (image)
-  //memeContainer.append (imageEl)
+var memeFunction = function () {
+  var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + searchInput + "&rating=g&tag=weather&api_key=4Mpw5NU7iwGDnG4LF24b8O8qVkX8MzdF&limit=1";
+
+  fetch(queryUrl)
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (data) {
+      renderImages(data);
+    });
+};
+function renderImages(data) {
+  var imageEl = document.createElement("div");
+  var image = document.createElement("img");
+  //var copywrite = document.createElement("p");
+  image.setAttribute("src", data.data[0].images.fixed_height.url);
+  $(".meme-container").append(image);
+
 }
 //*******************************************************/
 //             Weather section code goes here                */
@@ -275,7 +271,7 @@ var buttonClickHandler = function (event) {
 var getPlaylist = function () {
   var playlistOption;
   var globalTemp = currentTemp;
-  console.log("currentTemp", currentTemp);
+
   if (globalTemp > 80) {
     playlistOption = "happy";
   } else if (globalTemp < 80 && globalTemp > 65) {
@@ -287,38 +283,26 @@ var getPlaylist = function () {
   }
 
   fetch(
-    "https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=" +
-      playlistOption +
-      "&type=playlist&perPage=3"
+    "https://v1.nocodeapi.com/babaphillips/spotify/PZbXydYnaLTYpbUy/search?q="
+    +
+    playlistOption +
+    "&type=playlist&perPage=3"
   )
     .then((response) => response.json())
     .then((result) => console.log("[playlist???=", result))
     .catch((error) => console.log("error", error));
 
   //var spotifyPlaylistThing;
-  console.log("before 2nd fetch");
   fetch(
-    "https://v1.nocodeapi.com/babaphillips/spotify/FirIUjwQAgxPjCJN/search?q=" +
-      playlistOption +
-      "&type=playlist&perPage=3"
+    "https://v1.nocodeapi.com/babaphillips/spotify/PZbXydYnaLTYpbUy/search?q=" +
+    playlistOption +
+    "&type=playlist&perPage=3"
   ).then(function (response) {
     // request was successful
-    console.log("in 2nd fetch");
+
     if (response.ok) {
       response.json().then(function (spotifyPlaylistThing) {
-        console.log("in 2nd fetch - response ok");
-        console.log("spotifyPlaylistThing=", spotifyPlaylistThing);
-        //if (!spotifyPlaylistThing[0]) {
-        //console.log("in 2nd fetch - no data");
-        //no data returned for spotifyPlaylist
-        //console.log("no data returned - invalid spotifyPlaylistThing????");
-        //} else {
-        console.log("in 2nd fetch - ready to parse");
-        // Prepare object to push into array and make new selector button
-        console.log(
-          "spotifyPlaylistThing=",
-          spotifyPlaylistThing.playlists.items[0]
-        );
+
         PlaylistName = spotifyPlaylistThing.playlists.items[0].name;
         var spotifyPlaylistObj = {
           name: spotifyPlaylistThing.playlists.items[0].name,
@@ -333,17 +317,9 @@ var getPlaylist = function () {
         // use html element declared in index.html.  This is easier - one line.
         $("#spot-test-img-1").attr("src", spotifyPlaylistObj.imageUrl);
         $("#spot-playlist-1").attr("href", spotifyPlaylistObj.playlistUrl);
-        // make DOM elements in javascript (both do the same basic thing).  This fit nicely into the div that we have set.
-        //var imageEl = document.createElement ("div")
-        //var image = document.createElement ("img")
-        //image.setAttribute ("src", spotifyPlaylistObj.imageUrl)
-        //imageEl.append (image)
-        //$("#spot-test-container-1").append (imageEl)
+
         // Prepare object to push into array and make new selector button
-        console.log(
-          "spotifyPlaylistThing=",
-          spotifyPlaylistThing.playlists.items[1]
-        );
+
         PlaylistName = spotifyPlaylistThing.playlists.items[1].name;
         spotifyPlaylistObj = {
           name: spotifyPlaylistThing.playlists.items[1].name,
@@ -358,10 +334,7 @@ var getPlaylist = function () {
         $("#spot-test-img-2").attr("src", spotifyPlaylistObj.imageUrl);
         $("#spot-playlist-2").attr("href", spotifyPlaylistObj.playlistUrl);
         // Prepare object to push into array and make new selector button
-        console.log(
-          "spotifyPlaylistThing=",
-          spotifyPlaylistThing.playlists.items[2]
-        );
+
         PlaylistName = spotifyPlaylistThing.playlists.items[2].name;
         spotifyPlaylistObj = {
           name: spotifyPlaylistThing.playlists.items[2].name,
@@ -435,26 +408,26 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Highlight playlist on hover
-$("#spot-test-img-1").hover(function(){
+$("#spot-test-img-1").hover(function () {
   $(this).css("outline-style", "solid");
 },
-function(){
-  $(this).css("outline-style", "none");
-});
-$("#spot-test-img-2").hover(function(){
+  function () {
+    $(this).css("outline-style", "none");
+  });
+$("#spot-test-img-2").hover(function () {
   $(this).css("outline-style", "solid");
 },
-function(){
-  $(this).css("outline-style", "none");
-});
-$("#spot-test-img-3").hover(function(){
+  function () {
+    $(this).css("outline-style", "none");
+  });
+$("#spot-test-img-3").hover(function () {
   $(this).css("outline-style", "solid");
 },
-function(){
-  $(this).css("outline-style", "none");
-});
+  function () {
+    $(this).css("outline-style", "none");
+  });
 
-//memeFunction();
+memeFunction();
 renderCitySelectors();
 $("#city-search-form").on('submit', citySearchHandler);
 $("#city-buttons").on("click", buttonClickHandler);
