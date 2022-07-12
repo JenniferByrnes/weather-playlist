@@ -4,22 +4,35 @@ body{
   background-size: cover;
 }
 
+/* This helps keep the footer at the bottom of the view */
 .is-fullheight-100vh {
   height: 100vh;
 }
 
 .header-text {
-  color: yellow;
+  color: papayawhip;
 }
 
+#footer {
+  background-color: papayawhip;
+}
+/* playlists */
+#spotify-columns div {
+  background-color: darkgreen;
+}
+/* city submit button */
+/* populated buttons are created in js in AppendCity()*/
+#city-submit {
+  background-color: darkgreen;
+  color: whitesmoke
+}
+
+/* The large boxes */
+.box {
+  background-color: white;
+}
+
+/* Makes word "Great" stand out in hero */
 p span {
   font-weight: bold;
 }
-
-/*
-footer {
-  background: rgba(76, 175, 80, 0.3);
-  background-color: transparent;
-  margin-top: auto;
-}
-*/

@@ -229,13 +229,15 @@ var getWeather = function (latitude, longitude) {
             }
 
             // Call function to get Spotify playlist
+            // And reveal hidden elements
             currentTemp = data.current.temp;
-            $("#spotify-div").removeClass("is-hidden"); 
-            $(".meme-div").removeClass("is-hidden"); 
+
             $(".meme-container").empty();
             $("#body-div").removeClass("is-fullheight-100vh");
             memeFunction();
             getPlaylist();
+            $("#spotify-div").removeClass("is-hidden"); 
+            $(".meme-div").removeClass("is-hidden"); 
           }
         });
       } else {

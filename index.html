@@ -28,9 +28,10 @@
         </div>
       </div>
     </header>
+    
     <section class="column section">
       <div class="container">
-        <div class="columns is-vcentered">
+        <div class="columns is-vcentered is-centered">
           <!-- Here is the Giphy div(s) -->
           <!-- There are two (one hidden for differing screen sizes)-->
           <!-- Use classes instead of specific id's to change things-->
@@ -53,7 +54,8 @@
             </div>
             <div class="has-text-centered">Powered by GIPHY</div>
           </div>
-          <div class="column is-9">
+
+          <div class="column is-centered is-9">
             <!-- Weather section -->
             <div class="box" id="weather-box">
               <div class="columns">
@@ -62,7 +64,7 @@
                   <!-- Input city name form -->
                   <form class="control pb-1" id="city-search-form">
                     <input class="input has-text-centered" type="text" placeholder="Major City Name" id="city-name" />
-                    <button id="city-submit" class="button is-success has-background-success-dark is-fullwidth">
+                    <button id="city-submit" class="button is-fullwidth">
                       Submit
                     </button>
                   </form>
@@ -126,7 +128,7 @@
 
               <!-- This is the space for playlists -->
               <div class="columns" id="spotify-columns">
-                <div class="box column has-background-success-dark m-2">
+                <div class="box column m-2">
                   <div id="spotify-btn-1">
                     <p id="spot-test-title-1" class="has-text-centered pb-3"></p>
                     <div>
@@ -136,7 +138,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="box column has-background-success-dark m-2">
+                <div class="box column m-2">
                   <div id="spotify-btn-2">
                     <p id="spot-test-title-2" class="has-text-centered pb-3"></p>
                     <a id="spot-playlist-2" href="http://www.spotify.com" target="_blank">
@@ -144,7 +146,7 @@
                     </a>
                   </div>
                 </div>
-                <div class="box has-background-success-dark column m-2">
+                <div class="box column m-2">
                   <div id="spotify-btn-3">
                     <p id="spot-test-title-3" class="has-text-centered pb-3"></p>
                     <a id="spot-playlist-3" href="http://www.spotify.com" target="_blank">
@@ -192,10 +194,9 @@
     </div>
     </section>
 
-
     <section class="column is-narrow py-0">
       <!-- Footer - includes links to GitHub repos -->
-      <footer class="footer py-5 has-background-warning-light">
+      <footer class="footer py-5" id="footer">
         <div class="content has-text-centered">
           <p>
             <strong>Your Weather Playlist</strong> by
