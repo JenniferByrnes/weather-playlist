@@ -53,8 +53,9 @@ var appendCity = function (cityName) {
   // Create new city button and add it to the list
   var cityButton = $("<button class=button></button>")
     .text(cityName)
-    .addClass("has-background-warning-light is-responsive is-fullwidth mb-1");
-  // Prepend new city button element (it appears on top)
+    .addClass("is-responsive is-fullwidth mb-1")
+    .css( "background-color", "var(--secondary)") ;
+  // Prepend new city button element (it appears on top)ß
   $("#city-buttons").prepend(cityButton);
 };
 
