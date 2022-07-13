@@ -2,6 +2,13 @@ body{
   background-image: url("../../images/BackgroundImage.png");
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+:root {
+  --primary: rgb(31, 128, 131);
+  --secondary: rgb(242, 245, 172);
+  --tertiary: whitesmoke;
 }
 
 /* This helps keep the footer at the bottom of the view */
@@ -10,23 +17,23 @@ body{
 }
 
 .header-text {
-  color: papayawhip;
+  color: var(--secondary);
 }
 
 #footer {
-  background-color: papayawhip;
+  background-color: var(--secondary);
 }
 /* playlists */
 #spotify-columns div {
-  background-color: darkgreen;
-  color: whitesmoke;
+  background-color: var(--primary);
+  color: var(--tertiary);
 }
 
 /* city submit button */
 /* populated buttons are created in js in AppendCity()*/
 #city-submit {
-  background-color: darkgreen;
-  color: whitesmoke
+  background-color: var(--primary);
+  color: var(--secondary);
 }
 
 /* The large boxes */
