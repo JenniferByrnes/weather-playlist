@@ -30,7 +30,8 @@ body{
 }
 
 /* city submit button */
-/* populated buttons are created in js in AppendCity()*/
+/* populated buttons are created in js in AppendCity()
+and use --secondary as the background. */
 #city-submit {
   background-color: var(--primary);
   color: var(--secondary);
