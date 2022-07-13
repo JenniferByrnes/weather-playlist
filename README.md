@@ -9,6 +9,7 @@ The user can choose a city and get the weather and a fun playlist!
 * Bulma
 * JavaScript
 * JQuery
+* CSS
 
 ## Website
 https://jenniferbyrnes.github.io/weather-playlist/
@@ -17,4 +18,4 @@ https://jenniferbyrnes.github.io/weather-playlist/
 Crafted with ❤️ by Jennifer Byrnes, Amanda Phillips, and Savannah W.
 
 # Screenshot
-<img src="./assets/images/WeatherDashboardScreenshot.png">
+<img src="./images/Weather-playlist-screenshot.png">
