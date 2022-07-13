@@ -19,7 +19,9 @@ body{
 /* playlists */
 #spotify-columns div {
   background-color: darkgreen;
+  color: whitesmoke;
 }
+
 /* city submit button */
 /* populated buttons are created in js in AppendCity()*/
 #city-submit {
