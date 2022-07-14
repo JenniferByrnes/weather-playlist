@@ -29,7 +29,7 @@
       </div>
     </header>
     
-    <section class="column section">
+    <section class="column section py-0">
       <div class="container">
         <div class="columns is-vcentered is-centered">
           <!-- Here is the Giphy div(s) -->
@@ -58,7 +58,7 @@
           <div class="column is-centered is-9">
             <!-- Weather section -->
             <div class="box" id="weather-box">
-              <div class="columns">
+              <div class="columns is-justify-content-center">
                 <!-- Input city selector column -->
                 <div class="column is-3">
                   <!-- Input city name form -->
@@ -75,7 +75,7 @@
                   </div>
                 </div>
                 <!-- Display weather section -->
-                <div class="column is-9">
+                <div class="column is-9 is-hidden" id="display-weather-column">
                   <div>
                     <h2 class="is-size-3 title has-text-centered" id="city-date">
                       <span id="city-display">City, State</span>
@@ -156,12 +156,11 @@
                 </div>
               </div>
             </div>
-          </div>
 
           <!-- Here is the Meme div(s) -->
           <!-- There are two (one hidden for differing screen sizes)-->
           <!-- Use classes instead of specific id's to change things-->
-          <div class="column is-3 box is-hidden is-hidden-desktop meme-div">
+          <div class="column box is-hidden is-hidden-desktop meme-div mb-5">
             <h2 class="is-size-3 title has-text-centered meme-title">
               Giphy of the Day
             </h2>
@@ -175,6 +174,8 @@
             </div>
             <div class="has-text-centered">Powered by GIPHY</div>
           </div>
+          </div>
+
         </div>
       </div>
 
