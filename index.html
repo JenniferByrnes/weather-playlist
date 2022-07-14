@@ -28,7 +28,7 @@
         </div>
       </div>
     </header>
-    
+
     <section class="column section py-0">
       <div class="container">
         <div class="columns is-vcentered is-centered">
@@ -86,7 +86,7 @@
                     <div class="weather-info icon-size" id="today-icons"></div>
                   </div>
                   <div class="columns is-vcentered">
-                    <div class="column weather-info container">
+                    <div class="column weather-info container is-4">
                       <div class="is-flex is-flex-direction-column">
                         <div class="is-flex is-justify-content-center is-flex-direction-column has-text-centered"
                           id="weather-right-now">
@@ -103,15 +103,26 @@
                         </div>
                       </div>
                     </div>
-                    <div class="column has-text-centered">
-                      <ul class="city-today-group">
-                        <li id="today-temperature">Temp:</li>
-                        <li id="today-winds">Winds:</li>
-                        <li id="today-humidity">Humidity:</li>
+                    <div class="column is-6">
+                      <div class="columns is-vcentered is-mobile">
+                        <div class="column has-text-right">
+                          <ul class="city-today-group">
+                            <li>Temp:</li>
+                            <li>Winds:</li>
+                            <li>Humidity:</li>
+                            <li>UV Index: </li>
+                          </ul>
 
-                          <li class="pr-1 mx-2 px-2" >UV Index: <span id="today-uv-index"></span></li>
-
-                      </ul>
+                        </div>
+                        <div class="column has-text-left pl-0">
+                          <ul class="city-today-group">
+                            <li id="today-temperature"></li>
+                            <li id="today-winds"></li>
+                            <li id="today-humidity"></li>
+                            <span id="today-uv-index"></span>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -156,42 +167,42 @@
               </div>
             </div>
 
-          <!-- Here is the Meme div(s) -->
-          <!-- There are two (one hidden for differing screen sizes)-->
-          <!-- Use classes instead of specific id's to change things-->
-          <div class="column box is-hidden is-hidden-desktop meme-div mb-5">
-            <h2 class="is-size-3 title has-text-centered meme-title">
-              Giphy of the Day
-            </h2>
-            <p class="has-text-centered meme-subtitle">
-              An awesome giphy to start your day
-            </p>
-            <div class="is-flex is-justify-content-center">
-              <div class="container meme-container is-flex is-justify-content-center">
+            <!-- Here is the Meme div(s) -->
+            <!-- There are two (one hidden for differing screen sizes)-->
+            <!-- Use classes instead of specific id's to change things-->
+            <div class="column box is-hidden is-hidden-desktop meme-div mb-5">
+              <h2 class="is-size-3 title has-text-centered meme-title">
+                Giphy of the Day
+              </h2>
+              <p class="has-text-centered meme-subtitle">
+                An awesome giphy to start your day
+              </p>
+              <div class="is-flex is-justify-content-center">
+                <div class="container meme-container is-flex is-justify-content-center">
+                </div>
+
               </div>
-
+              <div class="has-text-centered">Powered by GIPHY</div>
             </div>
-            <div class="has-text-centered">Powered by GIPHY</div>
-          </div>
           </div>
 
         </div>
       </div>
 
 
-    <!-- Modal Error Handling -->
-    <!-- This will only display when there is an error being shown -->
-    <div id="modal-error-handling" class="modal">
-      <div class="modal-background"></div>
+      <!-- Modal Error Handling -->
+      <!-- This will only display when there is an error being shown -->
+      <div id="modal-error-handling" class="modal">
+        <div class="modal-background"></div>
 
-      <div class="modal-content">
-        <div class="box">
-          <p id="modal-error-message">This gets replaced using JS</p>
+        <div class="modal-content">
+          <div class="box">
+            <p id="modal-error-message">This gets replaced using JS</p>
+          </div>
         </div>
-      </div>
 
-      <button class="modal-close is-large" aria-label="close"></button>
-    </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
     </section>
 
     <section class="column is-narrow py-0">
