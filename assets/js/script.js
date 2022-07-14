@@ -17,9 +17,6 @@ var memeFunction = function () {
   var searchInput = weatherMain;
   var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + searchInput + "&rating=g&tag=weather&api_key=4Mpw5NU7iwGDnG4LF24b8O8qVkX8MzdF&limit=1";
 
-  console.log("giphy URL = ", queryUrl)
-  console.log("searchInput = ", searchInput)
-
   fetch(queryUrl)
     .then(function (res) {
       return res.json();
@@ -38,10 +35,9 @@ function renderImages(data) {
 //             Weather section code goes here                */
 // Display buttons for cities in local storage
 var renderCitySelectors = function () {
-  var length = cityObjArray.length;
-  console.log("***********************cityObjArray=", cityObjArray);
-
+  
   // Loop through the number of stored cities
+  var length = cityObjArray.length;
   for (let arrayIndex = 0; arrayIndex < length; arrayIndex++) {
     // Create button for city choices
     appendCity(cityObjArray[arrayIndex].cityName);
@@ -104,7 +100,6 @@ var getCityLatLong = function (cityName) {
       // request was successful
       if (response.ok) {
         response.json().then(function (cityData) {
-          console.log("**************************  cityData= ", cityData);
           if (!cityData[0]) {
             // no data returned for cityName
             errorMessage = "No city with that name was found. Please try again";
@@ -163,7 +158,6 @@ var getWeather = function (latitude, longitude) {
       // request was successful
       if (response.ok) {
         response.json().then(function (data) {
-          console.log("*******************************  data= ", data);
           if (!data.daily[0]) {
             // no data returned
             errorMessage =
@@ -229,16 +223,17 @@ var getWeather = function (latitude, longitude) {
               $("#today-uv-index").addClass("has-background-danger-dark");
             }
 
-            // Call function to get Spotify playlist
-            // And reveal hidden elements
             currentTemp = data.current.temp;
 
+            // reset gif
             $(".meme-container").empty();
-            $("#body-div").removeClass("is-fullheight-100vh");
+            
+            // Call functions to get gif and Spotify playlist
             memeFunction();
             getPlaylist();
             
             // Reveal screen elements that now have data 
+            $("#body-div").removeClass("is-fullheight-100vh");
             $("#display-weather-column").removeClass("is-hidden");
             $(".meme-div").removeClass("is-hidden");
             $("#spotify-div").removeClass("is-hidden"); 
