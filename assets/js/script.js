@@ -198,16 +198,14 @@ var getWeather = function (latitude, longitude) {
             $("#weather-main").append(weatherDescDisplay);
 
             // Display the temp/wind/humidity
-            $("#today-temperature").text("Temp: " + data.current.temp + "F");
-            $("#today-winds").text(
-              "Winds: " + data.current.wind_speed + " MPH"
+            $("#today-temperature").text(data.current.temp + "F");
+            $("#today-winds").text(data.current.wind_speed + " MPH"
             );
-            $("#today-humidity").text(
-              "Humidity: " + data.current.humidity + " %"
+            $("#today-humidity").text(data.current.humidity + " %"
             );
 
             // Display the UV index number
-            $("#today-uv-index").text("" + data.current.uvi);
+            $("#today-uv-index").text(data.current.uvi);
 
             // clear any old color class
             $("#today-uv-index").removeClass();
