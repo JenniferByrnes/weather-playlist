@@ -237,8 +237,12 @@ var getWeather = function (latitude, longitude) {
             $("#body-div").removeClass("is-fullheight-100vh");
             memeFunction();
             getPlaylist();
+            
+            // Reveal screen elements that now have data 
+            $("#display-weather-column").removeClass("is-hidden");
+            $(".meme-div").removeClass("is-hidden");
             $("#spotify-div").removeClass("is-hidden"); 
-            $(".meme-div").removeClass("is-hidden"); 
+             
           }
         });
       } else {
