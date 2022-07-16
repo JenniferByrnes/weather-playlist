@@ -1,8 +1,11 @@
 body{
   background-image: url("../../images/pexels-stas-knop-1319799.jpg");
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  position: relative;
+  min-height: 100vh;
 }
 
 :root {
@@ -11,17 +14,15 @@ body{
   --tertiary: whitesmoke;
 }
 
-/* This helps keep the footer at the bottom of the view */
-.is-fullheight-100vh {
-  height: 100vh;
-}
-
 .header-text {
   color: var(--secondary);
 }
 
 #footer {
   background-color: var(--secondary);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 /* playlists */
 #spotify-columns div {
