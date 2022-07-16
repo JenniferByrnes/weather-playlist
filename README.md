@@ -18,4 +18,4 @@ https://jenniferbyrnes.github.io/weather-playlist/
 Crafted with ❤️ by Jennifer Byrnes, Amanda Phillips, and Savannah W.
 
 # Screenshot
-<img src="./images/Weather-playlistscreenshot2.png"">
+<img src="./images/Weather-playlistscreenshot2.png">
