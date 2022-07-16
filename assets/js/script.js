@@ -38,10 +38,6 @@ function renderImages(data) {
 //             Weather section code goes here                */
 // Display buttons for cities in local storage
 var renderCitySelectors = function () {
-<<<<<<< HEAD
-=======
-
->>>>>>> e47d14cf08bfaf737467a14a702e0acbd8a7aeb4
   // Loop through the number of stored cities
   var length = cityObjArray.length;
   for (let arrayIndex = 0; arrayIndex < length; arrayIndex++) {
@@ -234,19 +230,11 @@ var getWeather = function (latitude, longitude) {
             memeFunction();
             getPlaylist();
 
-<<<<<<< HEAD
-            // Reveal screen elements that now have data
-=======
             // Reveal screen elements that now have data 
->>>>>>> e47d14cf08bfaf737467a14a702e0acbd8a7aeb4
             $("#body-div").removeClass("is-fullheight-100vh");
             $("#display-weather-column").removeClass("is-hidden");
             $(".meme-div").removeClass("is-hidden");
             $("#spotify-div").removeClass("is-hidden");
-<<<<<<< HEAD
-=======
-
->>>>>>> e47d14cf08bfaf737467a14a702e0acbd8a7aeb4
           }
         });
       } else {
