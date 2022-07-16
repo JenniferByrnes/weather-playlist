@@ -15,7 +15,10 @@ var cityObjArray = JSON.parse(localStorage.getItem("cityInfo") || "[]");
 //             Giphy code goes here                */
 var memeFunction = function () {
   var searchInput = weatherMain;
-  var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + searchInput + "&rating=g&tag=weather&api_key=4Mpw5NU7iwGDnG4LF24b8O8qVkX8MzdF&limit=1";
+  var queryUrl =
+    "https://api.giphy.com/v1/gifs/search?q=" +
+    searchInput +
+    "&rating=g&tag=weather&api_key=4Mpw5NU7iwGDnG4LF24b8O8qVkX8MzdF&limit=1";
 
   fetch(queryUrl)
     .then(function (res) {
@@ -35,7 +38,6 @@ function renderImages(data) {
 //             Weather section code goes here                */
 // Display buttons for cities in local storage
 var renderCitySelectors = function () {
-  
   // Loop through the number of stored cities
   var length = cityObjArray.length;
   for (let arrayIndex = 0; arrayIndex < length; arrayIndex++) {
@@ -50,7 +52,7 @@ var appendCity = function (cityName) {
   var cityButton = $("<button class=button></button>")
     .text(cityName)
     .addClass("is-responsive is-fullwidth mb-1")
-    .css( "background-color", "var(--secondary)") ;
+    .css("background-color", "var(--secondary)");
   // Prepend new city button element (it appears on top)ß
   $("#city-buttons").prepend(cityButton);
 };
@@ -199,10 +201,8 @@ var getWeather = function (latitude, longitude) {
 
             // Display the temp/wind/humidity
             $("#today-temperature").text(data.current.temp + "F");
-            $("#today-winds").text(data.current.wind_speed + " MPH"
-            );
-            $("#today-humidity").text(data.current.humidity + " %"
-            );
+            $("#today-winds").text(data.current.wind_speed + " MPH");
+            $("#today-humidity").text(data.current.humidity + " %");
 
             // Display the UV index number
             $("#today-uv-index").text(data.current.uvi);
@@ -225,17 +225,16 @@ var getWeather = function (latitude, longitude) {
 
             // reset gif
             $(".meme-container").empty();
-            
+
             // Call functions to get gif and Spotify playlist
             memeFunction();
             getPlaylist();
-            
-            // Reveal screen elements that now have data 
+
+            // Reveal screen elements that now have data
             $("#body-div").removeClass("is-fullheight-100vh");
             $("#display-weather-column").removeClass("is-hidden");
             $(".meme-div").removeClass("is-hidden");
-            $("#spotify-div").removeClass("is-hidden"); 
-             
+            $("#spotify-div").removeClass("is-hidden");
           }
         });
       } else {
@@ -287,10 +286,9 @@ var getPlaylist = function () {
   }
 
   fetch(
-    "https://v1.nocodeapi.com/babaphillips/spotify/PZbXydYnaLTYpbUy/search?q="
-    +
-    playlistOption +
-    "&type=playlist&perPage=3"
+    "https://v1.nocodeapi.com/babaphillips/spotify/PZbXydYnaLTYpbUy/search?q=" +
+      playlistOption +
+      "&type=playlist&perPage=3"
   )
     .then((response) => response.json())
     .then((result) => console.log("[playlist???=", result))
@@ -299,14 +297,13 @@ var getPlaylist = function () {
   //var spotifyPlaylistThing;
   fetch(
     "https://v1.nocodeapi.com/babaphillips/spotify/PZbXydYnaLTYpbUy/search?q=" +
-    playlistOption +
-    "&type=playlist&perPage=3"
+      playlistOption +
+      "&type=playlist&perPage=3"
   ).then(function (response) {
     // request was successful
 
     if (response.ok) {
       response.json().then(function (spotifyPlaylistThing) {
-
         PlaylistName = spotifyPlaylistThing.playlists.items[0].name;
         var spotifyPlaylistObj = {
           name: spotifyPlaylistThing.playlists.items[0].name,
@@ -315,7 +312,9 @@ var getPlaylist = function () {
           imageUrl: spotifyPlaylistThing.playlists.items[0].images[0].url,
         };
         $("#spot-test-title-1").text(spotifyPlaylistObj.name);
-        $("#spot-test-title").text("Click on the playlist that you want to hear.");
+        $("#spot-test-title").text(
+          "Click on the playlist that you want to hear."
+        );
         //$("#spot-test-img-1").
 
         // use html element declared in index.html.  This is easier - one line.
@@ -412,28 +411,32 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Highlight playlist on hover
-$("#spot-test-img-1").hover(function () {
-  $(this).css("outline-style", "solid");
-},
+$("#spot-test-img-1").hover(
+  function () {
+    $(this).css("outline-style", "solid");
+  },
   function () {
     $(this).css("outline-style", "none");
-  });
-$("#spot-test-img-2").hover(function () {
-  $(this).css("outline-style", "solid");
-},
+  }
+);
+$("#spot-test-img-2").hover(
+  function () {
+    $(this).css("outline-style", "solid");
+  },
   function () {
     $(this).css("outline-style", "none");
-  });
-$("#spot-test-img-3").hover(function () {
-  $(this).css("outline-style", "solid");
-},
+  }
+);
+$("#spot-test-img-3").hover(
+  function () {
+    $(this).css("outline-style", "solid");
+  },
   function () {
     $(this).css("outline-style", "none");
-  });
-
+  }
+);
 
 renderCitySelectors();
 document.getElementById("city-name").focus();
-$("#city-search-form").on('submit', citySearchHandler);
+$("#city-search-form").on("submit", citySearchHandler);
 $("#city-buttons").on("click", buttonClickHandler);
-
