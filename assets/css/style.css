@@ -32,7 +32,7 @@ body{
 /* city submit button */
 /* populated buttons are created in js in AppendCity()
 and use --secondary as the background. */
-#city-submit {
+#city-submit, .modal-exit {
   background-color: var(--primary);
   color: var(--secondary);
 }
