@@ -35,7 +35,7 @@ function renderImages(data) {
 //             Weather section code goes here                */
 // Display buttons for cities in local storage
 var renderCitySelectors = function () {
-  
+
   // Loop through the number of stored cities
   var length = cityObjArray.length;
   for (let arrayIndex = 0; arrayIndex < length; arrayIndex++) {
@@ -50,7 +50,7 @@ var appendCity = function (cityName) {
   var cityButton = $("<button class=button></button>")
     .text(cityName)
     .addClass("is-responsive is-fullwidth mb-1")
-    .css( "background-color", "var(--secondary)") ;
+    .css("background-color", "var(--secondary)");
   // Prepend new city button element (it appears on top)ß
   $("#city-buttons").prepend(cityButton);
 };
@@ -225,17 +225,17 @@ var getWeather = function (latitude, longitude) {
 
             // reset gif
             $(".meme-container").empty();
-            
+
             // Call functions to get gif and Spotify playlist
             memeFunction();
             getPlaylist();
-            
+
             // Reveal screen elements that now have data 
             $("#body-div").removeClass("is-fullheight-100vh");
             $("#display-weather-column").removeClass("is-hidden");
             $(".meme-div").removeClass("is-hidden");
-            $("#spotify-div").removeClass("is-hidden"); 
-             
+            $("#spotify-div").removeClass("is-hidden");
+
           }
         });
       } else {
@@ -367,13 +367,9 @@ document.addEventListener("DOMContentLoaded", () => {
     $("#modal-error-message").text(errorMessage);
   }
 
-  function closeModal($el) {
-    $el.classList.remove("is-active");
-  }
-
-  function closeAllModals() {
+  function closeModal() {
     (document.querySelectorAll(".modal") || []).forEach(($modal) => {
-      closeModal($modal);
+      $(".modal").removeClass("is-active");
     });
   }
 
@@ -390,13 +386,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add a click event on various child elements to close the parent modal
   (
     document.querySelectorAll(
-      ".modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button"
+      ".modal-background, .modal-close, .modal-exit .delete, .modal-content .button.modal-error-handling"
     ) || []
   ).forEach(($close) => {
-    const $target = $close.closest(".modal");
 
     $close.addEventListener("click", () => {
-      closeModal($target);
+      closeModal();
+    });
+
+    // Click exit button to close modal
+    $(".modal-exit").click(function () {
+      closeModal()
     });
   });
 
@@ -406,10 +406,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (e.key === 27) {
       // Escape key
-      closeAllModals();
+      closeModal();
     }
   });
-});
+}); // end modal error handling
 
 // Highlight playlist on hover
 $("#spot-test-img-1").hover(function () {
