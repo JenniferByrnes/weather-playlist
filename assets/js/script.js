@@ -1,7 +1,7 @@
 //  This is where all global variable should be declared.
 var errorMessage = "Error message not set.";
 var formalCityName;
-var stateName = "";
+var displayStateName = "";
 
 // Variable(s)) used to get playlist
 var weatherMain;
@@ -112,13 +112,17 @@ var getCityLatLong = function (cityName) {
           } else {
             // Prepare object to push into array and make new selector button
             formalCityName = cityData[0].name;
+            displayStateName = cityData[0].state;
+            if (!displayStateName) {
+              displayStateName = cityData[0].country;
+            }
+
             const cityObj = {
               cityName: formalCityName,
-              stateName: cityData[0].state,
+              stateName: displayStateName,
               latitude: cityData[0].lat,
               longitude: cityData[0].lon,
             };
-            stateName = cityObj.stateName;
 
             // Reset local storage
             cityObjArray.push(cityObj);
@@ -163,6 +167,7 @@ var getWeather = function (latitude, longitude) {
       // request was successful
       if (response.ok) {
         response.json().then(function (data) {
+          
           if (!data.daily[0]) {
             // no data returned
             errorMessage =
@@ -177,7 +182,7 @@ var getWeather = function (latitude, longitude) {
               month: "long",
               day: "numeric",
             };
-            $("#city-display").html(formalCityName + ", " + stateName);
+            $("#city-display").html(formalCityName + ", " + displayStateName);
             $("#date-display").html(
               " (" + initialDate.toLocaleDateString(undefined, options) + ")"
             );
@@ -266,7 +271,7 @@ var buttonClickHandler = function (event) {
         cityObjArray[arrayIndex].latitude,
         cityObjArray[arrayIndex].longitude
       );
-      stateName = cityObjArray[arrayIndex].stateName;
+      displayStateName = cityObjArray[arrayIndex].stateName;
     }
   });
 };
