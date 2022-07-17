@@ -26,7 +26,10 @@ var memeFunction = function () {
     })
     .then(function (data) {
       renderImages(data);
-    });
+    }).catch(function (error) {
+      console.log(error)
+    }
+    )
 };
 function renderImages(data) {
   var image = document.createElement("img");
