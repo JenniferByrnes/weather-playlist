@@ -4,6 +4,9 @@ A class project using open API calls to display current weather and playlist to 
 ## Purpose
 The user can choose a city and get the weather and a fun playlist! 
 
+## Usage
+When starting out, simply type in a major city name or select one from the dropdown.  A current weather report and fun Giphy and 3 Spotify playlist will be displayed.  Type in (or select) another city to see a different report, Giphy, and playlist.
+
 ## Built With
 * HTML
 * Bulma
