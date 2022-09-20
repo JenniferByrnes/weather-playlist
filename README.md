@@ -1,5 +1,5 @@
 # Weather Playlist
-A class project to use open API calls to display current weather and playlist to go with it
+A class project using open API calls to display current weather and playlist to go with it
 
 ## Purpose
 The user can choose a city and get the weather and a fun playlist! 
